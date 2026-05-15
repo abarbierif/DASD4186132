@@ -1,0 +1,15 @@
+{signal: [
+  {name: 'clk', wave: 'p............|............'},
+  {name: 'sclk', wave: '1.0..1.0.1.0.|..1.0.1.0.1.'},
+  {name: 'ad1_driver_current_state', wave: "=....=...=...|=.=...=...=.", data: ["15", "0", "1", "13", "14", "15"] },
+  {name: 'ad1_driver_next_state', wave: "=....=...=...|=.=...=...=.", data: ["0", "1", "2", "14", "15", "0"] },
+  {name: 'ad1_driver_ready', wave: '0....1...0...|......1...0.'},
+  {name: 'n_samples', wave: "=.........................", data: ["1023"] },
+  {name: 'samples_fsm_current_state', wave: "=.....=......|=......=....", data: ["35", "36", "1022", "1023"] },
+  {name: 'samples_fsm_next_state', wave: "=....=.......|=.....=.....", data: ["35", "36", "1022", "1023"] },
+  {name: 'ad1_driver_ready_rising', wave: '0....10......|......10....'},
+  {name: 'load', wave: '0.....10.....|.......10...'},
+  {name: 'start_metrics', wave: '0......10....|........10..'},
+  {name: 'last', wave: '0.....................10..'},
+  {name: 'start_ad1_driver', wave: '0....1...0...|......1...0.'},
+]}
