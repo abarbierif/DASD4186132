@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri May 15 22:23:11 2026
+[*] Sun May 17 05:55:13 2026
 [*]
 [dumpfile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.vcd"
-[dumpfile_mtime] "Fri May 15 22:20:04 2026"
-[dumpfile_size] 115258
+[dumpfile_mtime] "Sun May 17 05:54:05 2026"
+[dumpfile_size] 147936
 [savefile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.gtkw"
-[timestart] 870
+[timestart] 0
 [size] 1536 896
 [pos] -1 -1
-*-11.666751 15170 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-11.825850 11685 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_top.
 [treeopen] tb_top.dut.
 [treeopen] tb_top.dut.acquisiton_thread_inst.
@@ -17,16 +17,17 @@
 [treeopen] tb_top.dut.processing_thread_inst.mean_inst.
 [treeopen] tb_top.dut.processing_thread_inst.rms_inst.
 [sst_width] 291
-[signals_width] 299
+[signals_width] 362
 [sst_expanded] 1
-[sst_vpaned_height] 247
+[sst_vpaned_height] 379
 @28
 tb_top.clk
 tb_top.rst
 tb_top.start
 tb_top.cs
-@22
+@24
 tb_top.n_samples[9:0]
+tb_top.dut.acquisiton_thread_inst.m_samples[10:0]
 @28
 tb_top.ready
 @200
@@ -42,8 +43,6 @@ tb_top.dut.ad1_thread_inst.ad1_driver_inst.data0[11:0]
 tb_top.dut.ad1_thread_inst.ad1_driver_inst.ready
 @200
 -acquisition_thread
-@28
-tb_top.dut.acquisiton_thread_inst.start
 @22
 tb_top.dut.acquisiton_thread_inst.data0[11:0]
 @40000024
@@ -51,30 +50,48 @@ tb_top.dut.acquisiton_thread_inst.data0[11:0]
 tb_top.dut.acquisiton_thread_inst.data0_q2_12[13:0]
 @28
 tb_top.dut.acquisiton_thread_inst.ad1_driver_ready_rising
-tb_top.dut.acquisiton_thread_inst.start_metrics
-tb_top.dut.acquisiton_thread_inst.last_sample
+@200
+-
+@24
+tb_top.dut.acquisiton_thread_inst.fsm_samples.current_state[10:0]
+tb_top.dut.acquisiton_thread_inst.fsm_samples.next_state[10:0]
 @200
 -processing_thread
 @28
 tb_top.dut.processing_thread_inst.start
-@40000025
+@40000024
 [color] 2
 [fpshift_count] 12
 tb_top.dut.processing_thread_inst.data_in[13:0]
+[color] 2
+[fpshift_count] 20
+tb_top.dut.processing_thread_inst.div_lut_data[19:0]
 @28
 tb_top.dut.processing_thread_inst.ready
 tb_top.dut.processing_thread_inst.rms_inst.last_sample
 tb_top.dut.processing_thread_inst.rms_inst.last_sample_reg0
 tb_top.dut.processing_thread_inst.rms_inst.last_sample_reg1
+@200
+-rms
+@28
 tb_top.dut.processing_thread_inst.rms_inst.mult_en
 tb_top.dut.processing_thread_inst.rms_inst.acc_en
+tb_top.dut.processing_thread_inst.rms_inst.div0_en
+tb_top.dut.processing_thread_inst.rms_inst.div1_en
+tb_top.dut.processing_thread_inst.rms_inst.div2_en
 @40000024
 [fpshift_count] 24
 tb_top.dut.processing_thread_inst.rms_inst.square_data_in_reg[27:0]
-@40000025
 [color] 2
 [fpshift_count] 24
 tb_top.dut.processing_thread_inst.rms_inst.acc_square_data_in_reg[37:0]
+@40000025
+[color] 2
+[fpshift_count] 20
+tb_top.dut.processing_thread_inst.rms_inst.div_squared_data_q14_20[33:0]
+@200
+-mean
+@40000024
 [color] 2
 [fpshift_count] 12
 tb_top.dut.processing_thread_inst.mean_inst.acc_data_in[23:0]

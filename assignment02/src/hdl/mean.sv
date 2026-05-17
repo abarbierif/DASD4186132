@@ -4,6 +4,7 @@ module mean(
   input start,
   input last_sample,
   input [13:0] data_in,
+  input [19:0] div_lut_data,
   output ready
 );
 

@@ -13,7 +13,7 @@ module tb_top();
   top dut(
     .clk(clk),
     .rst(rst),
-    .n_samples(n_samples),
+    .N(n_samples),
     .start(start),
     .ready(ready),
     .d0(d0),
@@ -35,9 +35,9 @@ module tb_top();
     #50;
     rst=0;
 
-    #45;
+    #50;
     start=1;
-    #10;
+    #30;
     start=0;
 
     #30000; $finish;

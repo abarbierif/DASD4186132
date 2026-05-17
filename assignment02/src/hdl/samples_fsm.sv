@@ -2,7 +2,7 @@ module samples_fsm(
   input clk,
   input rst,
   input start,
-  input [9:0] n_samples,
+  input [10:0] n_samples,
   input ad1_driver_ready_rising,
   output ready
 );
@@ -18,10 +18,18 @@ module samples_fsm(
   // next state logic
   always_comb begin
     next_state = current_state;
-    if(current_state >= n_samples) begin
-      if(ad1_driver_ready_rising) next_state = 0;
+    if(current_state == 0) begin
+      if(start) begin
+	next_state = 1;
+      end
     end else begin
-      if(ad1_driver_ready_rising) next_state = current_state + 1;
+      if(current_state >= n_samples+1) begin
+        next_state = 0;
+      end else begin
+        if(ad1_driver_ready_rising) begin
+	  next_state = current_state + 1;
+        end
+      end
     end
   end
 

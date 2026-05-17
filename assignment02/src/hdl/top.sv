@@ -1,7 +1,7 @@
 module top(
   input clk,
   input rst,
-  input [9:0] n_samples,
+  input [9:0] N,
   input start,
   output ready,
   // pmod interface
@@ -16,12 +16,12 @@ module top(
 
   logic ad1_driver_ready;
   logic start_ad1_driver;
-  logic start_metrics;
+  logic start_processing;
+  logic [9:0] n_samples;
   logic last_sample;
   logic [13:0] data_q2_12;
   
-  logic metrics_ready;
-  logic rms_ready, max_ready, min_ready, mean_ready;
+  logic acquisition_ready, processing_ready;
   //assign metrics_ready = rms_ready & max_ready & min_ready & mean_ready;
 
   ad1_thread ad1_thread_inst(
@@ -41,24 +41,26 @@ module top(
     .clk(clk),
     .rst(rst),
     .start(start),
-    .n_samples(n_samples),
+    .n(N),
     .data0(data0_ad1),
     .data1(data1_ad1),
     .ad1_driver_ready(ad1_driver_ready),
+    .n_samples(n_samples),
     .last_sample(last_sample),
-    .start_metrics(start_metrics),
+    .start_processing(start_processing),
     .data_q2_12(data_q2_12),
     .start_ad1_driver(start_ad1_driver),
-    .ready()
+    .ready(acquisition_ready)
   );
 
   processing_thread processing_thread_inst(
     .clk(clk),
     .rst(rst),
-    .start(start_metrics),
+    .start(start_processing),
+    .n_samples(n_samples),
     .last_sample(last_sample),
     .data_in(data_q2_12),
-    .ready()
+    .ready(processing_ready)
   );
 /*
   clk_divider #(.COUNTER_WIDTH(2), .PERIOD(4)) ad1_driver_clk(

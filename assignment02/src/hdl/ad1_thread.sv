@@ -14,7 +14,7 @@ module ad1_thread(
 
   logic ad1_driver_divclk;
 
-  clk_divider #(.COUNTER_WIDTH(2), .PERIOD(4)) ad1_driver_clk(
+  clk_divider #(.COUNTER_WIDTH(2), .PERIOD(2)) ad1_driver_clk(
     .clk(clk),
     .rst(rst),
     .divclk(ad1_driver_divclk)
