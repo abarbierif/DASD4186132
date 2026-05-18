@@ -40,7 +40,12 @@ module tb_top();
     #30;
     start=0;
 
-    #30000; $finish;
+    #15000;
+    start=1;
+    #30;
+    start=0;
+
+    #15000; $finish;
 
   end
 

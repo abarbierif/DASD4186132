@@ -29,13 +29,27 @@ def div_lut():
         for n in range(1016, N):
             f.write(f"div[{n}] = 20'd{str(0)};\n")
 
-def div_norm():
-    print("Not defined yet")
+def norm_lut():
+    
+    N=64
+    step=0.5/64
+    with open("norm_lut.txt", "w") as f:
+        for _ in range(64):
+            entry = 0.5+(_*step)
+            fp_entry = str(Binary(entry))[4:]
+            len_fp_entry = len(fp_entry)
+            if len_fp_entry < 13:
+                for p in range(0, (13-len_fp_entry)):
+                    fp_entry += '0'
+
+            int_number = int(fp_entry, 2)
+            f.write(f"norm[{_}] = 18'd{str(int_number)};\n")
+            print(f"{_}: {entry} {Binary(fp_entry)}    {int_number}")
 
 if __name__ == '__main__':
     
     if len(sys.argv) != 2:
-        print(f"Usage: python3 {sys.argv[0]} div|norm")
+        print(f"Usage: python3 {sys.argv[0]} <div|norm>")
         sys.exit()
 
     lut = sys.argv[1]
