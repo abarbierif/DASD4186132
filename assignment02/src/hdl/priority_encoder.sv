@@ -1,45 +1,17 @@
 module priority_encoder(
-  input [63:0] data_in,
-  output logic [5:0] data_out
+  input [17:0] data_in,
+  output logic [5:0] data_out,
+  output logic [2:0] k_exp
 );
 
    // leading one
   always @(*) begin
     casez(data_in)
-      {1'b1, {39{1'b?}}}:                                  data_out = data_in[38:33];
-      {2'b01, {38{1'b?}}}:                                 data_out = data_in[37:32];
-      {3'b001, {37{1'b?}}}:                                data_out = data_in[36:31];
-      {4'b0001, {36{1'b?}}}:                               data_out = data_in[35:30];
-      {5'b00001, {35{1'b?}}}:                              data_out = data_in[34:29];
-      {6'b000001, {34{1'b?}}}:                             data_out = data_in[33:28];
-      {7'b0000001, {33{1'b?}}}:                            data_out = data_in[32:27];
-      {8'b00000001, {32{1'b?}}}:                           data_out = data_in[31:26];
-      {9'b000000001, {31{1'b?}}}:                          data_out = data_in[30:25];
-      {10'b0000000001, {30{1'b?}}}:                        data_out = data_in[29:24];
-      {11'b00000000001, {29{1'b?}}}:                       data_out = data_in[28:23];
-      {12'b000000000001, {28{1'b?}}}:                      data_out = data_in[27:22];
-      {13'b0000000000001, {27{1'b?}}}:                     data_out = data_in[26:21];
-      {14'b00000000000001, {26{1'b?}}}:                    data_out = data_in[25:20];
-      {15'b000000000000001, {25{1'b?}}}:                   data_out = data_in[24:19];
-      {16'b0000000000000001, {24{1'b?}}}:                  data_out = data_in[23:18];
-      {17'b00000000000000001, {23{1'b?}}}:                 data_out = data_in[22:17];
-      {18'b000000000000000001, {22{1'b?}}}:                data_out = data_in[21:16];
-      {19'b0000000000000000001, {21{1'b?}}}:               data_out = data_in[20:15];
-      {20'b00000000000000000001, {20{1'b?}}}:              data_out = data_in[19:14];
-      {21'b000000000000000000001, {19{1'b?}}}:             data_out = data_in[18:13];
-      {22'b0000000000000000000001, {18{1'b?}}}:            data_out = data_in[17:12];
-      {23'b00000000000000000000001, {17{1'b?}}}:           data_out = data_in[16:11];
-      {24'b000000000000000000000001, {16{1'b?}}}:          data_out = data_in[15:10];
-      {25'b0000000000000000000000001, {15{1'b?}}}:         data_out = data_in[14:9];
-      {26'b00000000000000000000000001, {14{1'b?}}}:        data_out = data_in[13:8];
-      {27'b000000000000000000000000001, {13{1'b?}}}:       data_out = data_in[12:7];
-      {28'b0000000000000000000000000001, {12{1'b?}}}:      data_out = data_in[11:6];
-      {29'b00000000000000000000000000001, {11{1'b?}}}:     data_out = data_in[10:5];
-      {30'b000000000000000000000000000001, {10{1'b?}}}:    data_out = data_in[9:4];
-      {31'b0000000000000000000000000000001, {9{1'b?}}}:    data_out = data_in[8:3];
-      {32'b00000000000000000000000000000001, {8{1'b?}}}:   data_out = data_in[7:2];
-      {33'b000000000000000000000000000000001, {7{1'b?}}}:  data_out = data_in[6:1];
-      {34'b0000000000000000000000000000000001, {6{1'b?}}}: data_out = data_in[5:0];
+      {1'b1, {17{1'b?}}}:     begin data_out = data_in[16:11]; k_exp = 3'd4; end
+      {2'b01, {16{1'b?}}}:    begin data_out = data_in[15:10]; k_exp = 3'd3; end
+      {3'b001, {15{1'b?}}}:   begin data_out = data_in[14:9];  k_exp = 3'd2; end
+      {4'b0001, {14{1'b?}}}:  begin data_out = data_in[13:8];  k_exp = 3'd1; end
+      default: begin data_out = data_in[12:7]; k_exp = 0; end
     endcase
   end
 

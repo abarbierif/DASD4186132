@@ -3,11 +3,14 @@ module top(
   input rst,
   input [9:0] N,
   input start,
-  output ready,
+  input [1:0] metric_sel,
   // pmod interface
   input d0, d1,
   output cs,
-  output sclk
+  output sclk,
+  // display interface
+  output logic [7:0] seg,
+  output logic [7:0] an
 );
 
   logic ad1_driver_divclk;
@@ -20,9 +23,10 @@ module top(
   logic [9:0] n_samples;
   logic last_sample;
   logic [13:0] data_q2_12;
+  logic [13:0] sqrt, mean, max, min;
   
-  logic acquisition_ready, processing_ready;
-  //assign metrics_ready = rms_ready & max_ready & min_ready & mean_ready;
+  logic acquisition_ready, processing_ready, metrics_ready;
+  assign metrics_ready = acquisition_ready & processing_ready;
 
   ad1_thread ad1_thread_inst(
     .clk(clk),
@@ -60,59 +64,25 @@ module top(
     .n_samples(n_samples),
     .last_sample(last_sample),
     .data_in(data_q2_12),
+    .sqrt(sqrt),
+    .mean(mean),
+    .max(max),
+    .min(min),
     .ready(processing_ready)
   );
-/*
-  clk_divider #(.COUNTER_WIDTH(2), .PERIOD(4)) ad1_driver_clk(
-    .clk(clk),
-    .rst(rst),
-    .divclk(ad1_driver_divclk)
-  );
 
-  ad1_driver ad1_driver_inst(
+  visualization_thread visualization_thread_inst(
     .clk(clk),
     .rst(rst),
-    .divclk(ad1_driver_divclk), //20MHz
-    .start(start_ad1_driver),
-    .ready(ad1_driver_ready),
-    .data0(data0_ad1),
-    .data1(data1_ad1),
-    // pmod interface
-    .d0(d0),
-    .d1(d1),
-    .cs(cs),
-    .sclk(sclk)
-  );
-
-  samples_fsm main_fsm(
-    .clk(clk),
-    .rst(rst),
-    .start(start),
-    .n_samples(n_samples),
-    .ad1_driver_ready(ad1_driver_ready),
+    .sqrt(sqrt),
+    .mean(mean),
+    .max(max),
+    .min(min),
+    .metric_sel(metric_sel),
     .metrics_ready(metrics_ready),
-    .load(load),
-    .start_metrics(start_metrics),
-    .last(last),
-    .start_ad1_driver(start_ad1_driver),
-    .ready(ready)
+    .start_acquisition(start),
+    .seg(seg),
+    .an(an)
   );
 
-  // register for data0 and data1
-  register #(.WIDTH(12)) data0_register(
-    .clk(clk),
-    .rst(rst),
-    .en(load),
-    .data_in(data0_ad1),
-    .data_out()
-  );
-
-  register #(.WIDTH(12)) data1_register(
-    .clk(clk),
-    .rst(rst),
-    .en(load),
-    .data_in(data1_ad1),
-    .data_out()
-  );
-*/
 endmodule 

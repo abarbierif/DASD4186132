@@ -1,14 +1,13 @@
-module mean_fsm(
+module comp_fsm(
   input clk,
   input rst,
   input start,
   input last_sample,
-  output acc_en,
-  output div_en,
+  output comp_en,
   output ready
 );
 
-  typedef enum {IDLE, ACC, DIV} state_t;
+  typedef enum {IDLE, COMP} state_t;
   state_t current_state, next_state;
 
   always_ff @(posedge clk) begin
@@ -21,24 +20,18 @@ module mean_fsm(
     case(current_state)
       IDLE: begin
         if(start) begin
-          next_state = ACC;
-	      end
+          next_state = COMP;
+        end
       end
-      ACC: begin
+      COMP: begin
         if(last_sample) begin
-	        next_state = DIV;
-        end else begin
           next_state = IDLE;
-	      end
-      end
-      DIV: begin
-	      next_state = IDLE;
+        end
       end
     endcase
   end
 
-  assign acc_en = (current_state == ACC);
-  assign div_en = (current_state == DIV);
-  assign ready  = (current_state == IDLE);
+  assign comp_en = (current_state == COMP);
+  assign ready   = (current_state == IDLE);
 
 endmodule

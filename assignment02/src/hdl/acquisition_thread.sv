@@ -12,7 +12,7 @@ module acquisition_thread(
   output logic last_sample,
   output logic start_processing,
   output [13:0] data_q2_12,
-  // outputs for ad1_thread
+  // output for ad1_thread
   output logic start_ad1_driver,
   // output for top
   output ready
@@ -25,24 +25,15 @@ module acquisition_thread(
   logic scale_pipe_fsm_ready_reg, scale_pipe_fsm_ready_rising;
   logic samples_fsm_ready, scale_pipe_fsm_ready;
 
-  // (ADC/4095)*3.3 = ADC*0.0008058608058608059
-  // 0.0008058608058608059*2^(20) = 845
-  localparam scaling_factor = 20'd845; //Q0.20
-  logic [31:0] data0_by_scaling_factor;
+  logic [31:0] data0_scaled;
   logic [13:0] data0_q2_12;
   logic [11:0] data0_reg, data1_reg;
   
   // detector of rising edges
   always_ff @(posedge clk) begin
-    if(rst) begin
-      ad1_driver_ready_reg <= 0;
-      samples_fsm_ready_reg <= 0;
-      scale_pipe_fsm_ready_reg <= 0;
-    end else begin
-      ad1_driver_ready_reg <= ad1_driver_ready;
-      samples_fsm_ready_reg <= samples_fsm_ready;
-      scale_pipe_fsm_ready_reg <= scale_pipe_fsm_ready;
-    end
+    ad1_driver_ready_reg <= ad1_driver_ready;
+    samples_fsm_ready_reg <= samples_fsm_ready;
+    scale_pipe_fsm_ready_reg <= scale_pipe_fsm_ready;
   end
 
   assign ad1_driver_ready_rising = ~ad1_driver_ready_reg & ad1_driver_ready;
@@ -71,11 +62,11 @@ module acquisition_thread(
       data1_reg <= 0;
     end else begin
       if(ad1_driver_ready_rising) begin
-	data0_reg <= data0;
-	data1_reg <= data1;
+	      data0_reg <= data0;
+	      data1_reg <= data1;
       end
 
-      data0_q2_12 <= data0_by_scaling_factor[21:8];
+      data0_q2_12 <= data0_scaled;
     end
   end
 
@@ -87,18 +78,18 @@ module acquisition_thread(
     end else begin
       if(samples_fsm_ready) begin
         n_samples <= n;
-	if(n >= 10'd115) begin
-          m_samples <= 11'd1024;
-	end else begin
-	  m_samples <= n + 10'd8;
+	    if(n >= 10'd115) begin
+        m_samples <= 11'd1024;
+	    end else begin
+	      m_samples <= n + 10'd8;
         end
       end
     end
   end
   
-  assign data0_by_scaling_factor = data0_reg * scaling_factor; //Q12.20
+  assign data0_scaled = (data0_reg * 20'b00000000001101001101) >> 8; //Q12.0 * Q0.20 = Q12.20
   assign start_ad1_driver = (!samples_fsm_ready && ad1_driver_ready) || (samples_fsm_ready && start);
-  assign ready = scale_pipe_fsm_ready;
+  assign ready = samples_fsm_ready;
   assign last_sample = samples_fsm_ready && scale_pipe_fsm_ready_rising; 
   assign start_processing = scale_pipe_fsm_ready_rising;
   assign data_q2_12 = data0_q2_12;

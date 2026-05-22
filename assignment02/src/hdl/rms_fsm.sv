@@ -8,11 +8,12 @@ module rms_fsm(
   output div0_en,
   output div1_en,
   output xk_sel,
+  output norm0_en, norm1_en,
   output nr0_en, nr1_en, nr2_en, nr3_en, nr4_en,
   output ready
 );
 
-  typedef enum {IDLE, MULT, ACC, DIV0, DIV1, NORM, NR0, NR1, NR2, NR3, NR4} state_t;
+  typedef enum {IDLE, MULT, ACC, DIV0, DIV1, NORM0, NORM1, NR0, NR1, NR2, NR3, NR4} state_t;
   state_t current_state, next_state;
   
   localparam NR_ITER = 5;
@@ -46,9 +47,12 @@ module rms_fsm(
         next_state = DIV1;
       end
       DIV1: begin
-        next_state = NORM;
+        next_state = NORM0;
       end
-      NORM: begin
+      NORM0: begin
+	      next_state = NORM1;
+      end
+      NORM1: begin
 	      next_state = NR0;
       end
       NR0: begin
@@ -95,6 +99,8 @@ module rms_fsm(
   assign div0_en = (current_state == DIV0);
   assign div1_en = (current_state == DIV1);
   assign xk_sel  = !((current_state == NR0) && (nr_counter == 0));
+  assign norm0_en = (current_state == NORM0);
+  assign norm1_en = (current_state == NORM1);
   assign nr0_en  = (current_state == NR0);  
   assign nr1_en  = (current_state == NR1);  
   assign nr2_en  = (current_state == NR2);  
