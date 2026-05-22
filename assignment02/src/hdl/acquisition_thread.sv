@@ -2,6 +2,7 @@ module acquisition_thread(
   input clk,
   input rst,
   input start,
+  input mode,
   input [9:0] n,
   // input data from ad1_thread
   input [11:0] data0,
@@ -27,6 +28,10 @@ module acquisition_thread(
 
   logic [31:0] data0_scaled;
   logic [13:0] data0_q2_12;
+  logic test;
+  logic [13:0] test_lut_data_out;
+  logic [10:0] test_lut_addr_count;
+  logic [9:0]  test_lut_addr;
   logic [11:0] data0_reg, data1_reg;
   
   // detector of rising edges
@@ -39,6 +44,15 @@ module acquisition_thread(
   assign ad1_driver_ready_rising = ~ad1_driver_ready_reg & ad1_driver_ready;
   assign samples_fsm_ready_rising = ~samples_fsm_ready_reg & samples_fsm_ready;
   assign scale_pipe_fsm_ready_rising = ~scale_pipe_fsm_ready_reg & scale_pipe_fsm_ready;
+  
+  mode_fsm fsm_mode(
+    .clk(clk),
+    .rst(rst),
+    .start(start),
+    .mode(mode),
+    .ready(samples_fsm_ready),
+    .test(test)
+  );
 
   samples_fsm fsm_samples(
     .clk(clk),
@@ -55,6 +69,13 @@ module acquisition_thread(
     .ad1_driver_ready_rising(ad1_driver_ready_rising),
     .ready(scale_pipe_fsm_ready)
   );
+
+  test_lut lut_test(
+    .clk(clk),
+    .rst(rst),
+    .addr(test_lut_addr),
+    .data_out(test_lut_data_out)
+  );
   
   always_ff @(posedge clk) begin
     if(rst) begin
@@ -65,10 +86,26 @@ module acquisition_thread(
 	      data0_reg <= data0;
 	      data1_reg <= data1;
       end
-
-      data0_q2_12 <= data0_scaled;
+      
+        data0_q2_12 <= data0_scaled;
     end
   end
+
+  always_ff @(posedge clk) begin
+    if(rst) begin
+      test_lut_addr_count <= 0;
+    end else begin
+      if(samples_fsm_ready) begin
+        test_lut_addr_count <= 0;
+      end
+      if(ad1_driver_ready_rising) begin
+        test_lut_addr_count <= test_lut_addr_count + 1;
+      end
+    end
+  end
+
+  assign test_lut_addr = test_lut_addr_count - 1;
+
 
   // samples logic
   always @(posedge clk) begin
@@ -92,6 +129,6 @@ module acquisition_thread(
   assign ready = samples_fsm_ready;
   assign last_sample = samples_fsm_ready && scale_pipe_fsm_ready_rising; 
   assign start_processing = scale_pipe_fsm_ready_rising;
-  assign data_q2_12 = data0_q2_12;
+  assign data_q2_12 = test ? test_lut_data_out : data0_q2_12;
 
 endmodule

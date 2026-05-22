@@ -3,6 +3,7 @@ module top(
   input rst,
   input [9:0] N,
   input start,
+  input mode,
   input [1:0] metric_sel,
   // pmod interface
   input d0, d1,
@@ -45,6 +46,7 @@ module top(
     .clk(clk),
     .rst(rst),
     .start(start),
+    .mode(mode),
     .n(N),
     .data0(data0_ad1),
     .data1(data1_ad1),

@@ -4,6 +4,7 @@ module tb_top();
   logic rst;
   logic [9:0] n_samples;
   logic start;
+  logic mode;
   logic [1:0] metric_sel;
   // pmod interface
   logic d0, d1;
@@ -18,6 +19,7 @@ module tb_top();
     .rst(rst),
     .N(n_samples),
     .start(start),
+    .mode(mode),
     .metric_sel(metric_sel),
     .d0(d0),
     .d1(d1),
@@ -36,6 +38,7 @@ module tb_top();
     rst=1;
     n_samples=10;
     start=0;
+    mode=0;
     metric_sel=2'b00;
 
     #50;
@@ -80,7 +83,25 @@ module tb_top();
     #30;
     start=0;
     
-    #1000000; $finish;
+    #950000; 
+    mode=1;
+    n_samples=100;
+
+    #15000;
+    start=1;
+    #30;
+    start=0;
+    
+    #200000; 
+    n_samples=2000;
+
+    #15000;
+    start=1;
+    
+    #500000
+    start=0;
+
+    #500000; $finish;
 
   end
 
