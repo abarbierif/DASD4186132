@@ -10,7 +10,7 @@ module display_fsm(
   state_t current_state, next_state;
 
   always @(posedge clk) begin
-    if(rst) current_state <= 0;
+    if(rst) current_state <= IDLE;
     else    current_state <= next_state;
   end
 
