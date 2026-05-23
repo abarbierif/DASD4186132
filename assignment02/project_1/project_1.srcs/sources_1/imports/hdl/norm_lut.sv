@@ -1,0 +1,82 @@
+module norm_lut(
+  input clk,
+  input rst,
+  input [5:0] addr,
+  output logic [17:0] data_out
+);
+
+  logic [17:0] norm [0:63];
+
+  always_ff @(posedge clk) begin
+    if(rst) data_out <= 0;
+    else    data_out <= norm[addr];
+  end 
+
+  initial begin
+    norm[0] = 18'd92681;
+    norm[1] = 18'd91966;
+    norm[2] = 18'd91266;
+    norm[3] = 18'd90583;
+    norm[4] = 18'd89914;
+    norm[5] = 18'd89260;
+    norm[6] = 18'd88620;
+    norm[7] = 18'd87994;
+    norm[8] = 18'd87381;
+    norm[9] = 18'd86780;
+    norm[10] = 18'd86192;
+    norm[11] = 18'd85615;
+    norm[12] = 18'd85050;
+    norm[13] = 18'd84496;
+    norm[14] = 18'd83953;
+    norm[15] = 18'd83420;
+    norm[16] = 18'd82897;
+    norm[17] = 18'd82383;
+    norm[18] = 18'd81880;
+    norm[19] = 18'd81385;
+    norm[20] = 18'd80899;
+    norm[21] = 18'd80422;
+    norm[22] = 18'd79953;
+    norm[23] = 18'd79492;
+    norm[24] = 18'd79039;
+    norm[25] = 18'd78594;
+    norm[26] = 18'd78156;
+    norm[27] = 18'd77725;
+    norm[28] = 18'd77302;
+    norm[29] = 18'd76885;
+    norm[30] = 18'd76475;
+    norm[31] = 18'd76071;
+    norm[32] = 18'd75674;
+    norm[33] = 18'd75283;
+    norm[34] = 18'd74898;
+    norm[35] = 18'd74519;
+    norm[36] = 18'd74145;
+    norm[37] = 18'd73777;
+    norm[38] = 18'd73415;
+    norm[39] = 18'd73057;
+    norm[40] = 18'd72705;
+    norm[41] = 18'd72358;
+    norm[42] = 18'd72016;
+    norm[43] = 18'd71679;
+    norm[44] = 18'd71346;
+    norm[45] = 18'd71018;
+    norm[46] = 18'd70694;
+    norm[47] = 18'd70375;
+    norm[48] = 18'd70060;
+    norm[49] = 18'd69750;
+    norm[50] = 18'd69443;
+    norm[51] = 18'd69141;
+    norm[52] = 18'd68842;
+    norm[53] = 18'd68547;
+    norm[54] = 18'd68256;
+    norm[55] = 18'd67969;
+    norm[56] = 18'd67685;
+    norm[57] = 18'd67405;
+    norm[58] = 18'd67128;
+    norm[59] = 18'd66854;
+    norm[60] = 18'd66584;
+    norm[61] = 18'd66317;
+    norm[62] = 18'd66054;
+    norm[63] = 18'd65793;
+  end
+
+endmodule
