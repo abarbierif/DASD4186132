@@ -33,8 +33,8 @@ module tb_top();
 
   initial begin
 
-    $dumpfile("top.vcd");
-    $dumpvars();
+    //$dumpfile("top.vcd");
+    //$dumpvars();
 
     clk=0;
     rst=1;
@@ -70,7 +70,7 @@ module tb_top();
     start=0;
    
     #25000;
-    n_samples=10'd0;
+    n_samples=0;
 
     #15000;
     start=1;
@@ -78,7 +78,7 @@ module tb_top();
     start=0;
     
     #15000;
-    n_samples=10'd117;
+    n_samples=10'd1017;
 
     #15000;
     start=1;
@@ -95,11 +95,10 @@ module tb_top();
     start=0;
     
     #200000; 
-    n_samples=10'd119;
+    n_samples=10'd1019;
 
     #15000;
     start=1;
-    
     #500000
     start=0;
 
@@ -119,6 +118,7 @@ module tb_top();
     #10000 $finish;
 
   end
+
 
   always #5 clk = ~clk;
   always @(negedge sclk) d0 = $urandom_range(0, 1);

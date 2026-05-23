@@ -34,10 +34,10 @@ module visualization_thread(
   );
 
   mux4 #(.WIDTH(14)) metric_mux(
-    .in0(sqrt),
-    .in1(mean),
-    .in2(max),
-    .in3(min),
+    .in0(max),
+    .in1(min),
+    .in2(mean),
+    .in3(sqrt),
     .sel(metric_sel),
     .out(metric)
   );
@@ -61,7 +61,7 @@ module visualization_thread(
     .seg(seg),
     .an(an)
   );
-
+  
   always_ff @(posedge clk) begin
     if(rst) begin
       dp <= 1;

@@ -115,10 +115,10 @@ module acquisition_thread(
     end else begin
       if(samples_fsm_ready) begin
         n_samples <= n;
-	    if(n >= 10'd115) begin
-        m_samples <= 11'd1024;
+	    if(n >= 10'd116) begin
+          m_samples <= 11'd1024;
 	    end else begin
-	      m_samples <= n + 10'd8;
+	      m_samples <= n + 11'd8;
         end
       end
     end

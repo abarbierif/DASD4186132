@@ -1,15 +1,16 @@
-module display_fsm(
+module comp_fsm(
   input clk,
   input rst,
-  input metrics_ready,
-  input start_acquisition,
-  output display
+  input start,
+  input last_sample,
+  output comp_en,
+  output ready
 );
 
-  typedef enum {IDLE, DISPLAY} state_t;
+  typedef enum {IDLE, COMP} state_t;
   state_t current_state, next_state;
 
-  always @(posedge clk) begin
+  always_ff @(posedge clk) begin
     if(rst) current_state <= IDLE;
     else    current_state <= next_state;
   end
@@ -18,18 +19,19 @@ module display_fsm(
     next_state = current_state;
     case(current_state)
       IDLE: begin
-        if(metrics_ready) begin
-          next_state = DISPLAY;
+        if(start) begin
+          next_state = COMP;
         end
       end
-      DISPLAY: begin
-        if(start_acquisition) begin
+      COMP: begin
+        if(last_sample) begin
           next_state = IDLE;
         end
       end
     endcase
   end
 
-  assign display = (current_state == DISPLAY);
+  assign comp_en = (current_state == COMP);
+  assign ready   = (current_state == IDLE);
 
 endmodule
