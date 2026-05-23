@@ -11,7 +11,8 @@ module top(
   output sclk,
   // display interface
   output logic [7:0] seg,
-  output logic [7:0] an
+  output logic [7:0] an,
+  output logic dp
 );
 
   logic ad1_driver_divclk;
@@ -84,7 +85,8 @@ module top(
     .metrics_ready(metrics_ready),
     .start_acquisition(start),
     .seg(seg),
-    .an(an)
+    .an(an),
+    .dp(dp)
   );
 
 endmodule 

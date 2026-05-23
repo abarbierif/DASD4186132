@@ -6,7 +6,8 @@ module visualization_thread(
   input metrics_ready,
   input start_acquisition,
   output logic [7:0] seg,
-  output logic [7:0] an
+  output logic [7:0] an,
+  output logic dp
 );
 
   logic metrics_ready_reg, metrics_ready_rising;
@@ -60,5 +61,21 @@ module visualization_thread(
     .seg(seg),
     .an(an)
   );
+
+  always_ff @(posedge clk) begin
+    if(rst) begin
+      dp <= 1;
+    end else begin
+      if(display) begin
+        if(an == 8'b11110111) begin
+          dp <= 0;
+        end else begin
+          dp <= 1;
+        end
+      end else begin
+        dp <= 1;
+      end
+    end
+  end
 
 endmodule
