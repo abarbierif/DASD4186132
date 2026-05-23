@@ -13,6 +13,7 @@ module tb_top();
   // display interface
   logic [7:0] seg;
   logic [7:0] an;
+  logic dp;
 
   top dut(
     .clk(clk),
@@ -26,7 +27,8 @@ module tb_top();
     .cs(cs),
     .sclk(sclk),
     .seg(seg),
-    .an(an)
+    .an(an),
+    .dp(dp)
   );
 
   initial begin
@@ -36,7 +38,7 @@ module tb_top();
 
     clk=0;
     rst=1;
-    n_samples=10;
+    n_samples=10'd10;
     start=0;
     mode=0;
     metric_sel=2'b00;
@@ -60,7 +62,7 @@ module tb_top();
     start=0;
 
     #15000;
-    n_samples=50;
+    n_samples=10'd50;
 
     #15000;
     start=1;
@@ -68,7 +70,7 @@ module tb_top();
     start=0;
    
     #25000;
-    n_samples=0;
+    n_samples=10'd0;
 
     #15000;
     start=1;
@@ -76,7 +78,7 @@ module tb_top();
     start=0;
     
     #15000;
-    n_samples=2000;
+    n_samples=10'd117;
 
     #15000;
     start=1;
@@ -85,7 +87,7 @@ module tb_top();
     
     #950000; 
     mode=1;
-    n_samples=100;
+    n_samples=10'd100;
 
     #15000;
     start=1;
@@ -93,7 +95,7 @@ module tb_top();
     start=0;
     
     #200000; 
-    n_samples=2000;
+    n_samples=10'd119;
 
     #15000;
     start=1;
@@ -101,7 +103,20 @@ module tb_top();
     #500000
     start=0;
 
-    #500000; $finish;
+    #500000; 
+    n_samples=10'd0;
+    start=1;
+    #30;
+    start=0;
+
+    #100000; 
+    metric_sel=2'b01;
+    #100;
+    metric_sel=2'b10;
+    #100;
+    metric_sel=2'b11;
+
+    #10000 $finish;
 
   end
 

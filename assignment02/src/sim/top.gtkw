@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri May 22 18:36:31 2026
+[*] Fri May 22 23:08:49 2026
 [*]
 [dumpfile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.vcd"
-[dumpfile_mtime] "Fri May 22 18:32:23 2026"
-[dumpfile_size] 26239894
+[dumpfile_mtime] "Fri May 22 23:06:28 2026"
+[dumpfile_size] 27598332
 [savefile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.gtkw"
 [timestart] 0
 [size] 1536 896
 [pos] 0 27
-*-29.094660 1771115000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-25.161901 41965000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_top.
 [treeopen] tb_top.dut.
 [treeopen] tb_top.dut.acquisiton_thread_inst.
@@ -26,7 +26,6 @@ tb_top.start
 tb_top.dut.acquisiton_thread_inst.mode
 tb_top.cs
 @24
-tb_top.n_samples[9:0]
 tb_top.dut.acquisiton_thread_inst.m_samples[10:0]
 @200
 -ACQUISITION
@@ -138,7 +137,6 @@ tb_top.dut.processing_thread_inst.max_inst.start
 @40000024
 [fpshift_count] 12
 tb_top.dut.processing_thread_inst.max_inst.data_in[13:0]
-@40000025
 [color] 2
 [fpshift_count] 12
 tb_top.dut.processing_thread_inst.max_inst.max_reg[13:0]
@@ -150,16 +148,29 @@ tb_top.dut.processing_thread_inst.max_inst.ready
 @28
 tb_top.dut.visualization_thread_inst.metrics_ready_rising
 tb_top.dut.visualization_thread_inst.start_acquisition_rising
-@24
-tb_top.dut.visualization_thread_inst.metric_scaled_reg[11:0]
-@28
-tb_top.dut.visualization_thread_inst.an[7:0]
-tb_top.dut.visualization_thread_inst.seg[7:0]
+@29
 tb_top.dut.visualization_thread_inst.display
-@420
-tb_top.dut.visualization_thread_inst.fsm_display.current_state
-tb_top.dut.visualization_thread_inst.fsm_display.next_state
 @200
 -
+@40000024
+[fpshift_count] 12
+tb_top.dut.visualization_thread_inst.sqrt[13:0]
+[fpshift_count] 12
+tb_top.dut.visualization_thread_inst.mean[13:0]
+[fpshift_count] 12
+tb_top.dut.visualization_thread_inst.max[13:0]
+[fpshift_count] 12
+tb_top.dut.visualization_thread_inst.min[13:0]
+@24
+tb_top.dut.visualization_thread_inst.metric_scaled_reg[11:0]
+tb_top.dut.visualization_thread_inst.bin27seg.result[11:0]
+@22
+tb_top.dut.visualization_thread_inst.bin27seg.seg[7:0]
+@200
+-
+@28
+tb_top.dut.visualization_thread_inst.seg[7:0]
+tb_top.dut.visualization_thread_inst.an[7:0]
+tb_top.dut.visualization_thread_inst.dp
 [pattern_trace] 1
 [pattern_trace] 0
