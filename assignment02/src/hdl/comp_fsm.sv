@@ -7,8 +7,14 @@ module comp_fsm(
   output ready
 );
 
-  typedef enum {IDLE, COMP} state_t;
+  typedef enum {IDLE, COMP, COMP_READY, COMP_LAST} state_t;
   state_t current_state, next_state;
+
+  logic last_sample_reg;
+
+  always_ff @(posedge clk) begin
+    last_sample_reg <= 0;
+  end
 
   always_ff @(posedge clk) begin
     if(rst) current_state <= IDLE;
@@ -24,14 +30,22 @@ module comp_fsm(
         end
       end
       COMP: begin
-        if(last_sample) begin
-          next_state = IDLE;
+        if(last_sample_reg) begin
+          next_state = COMP_LAST;
+        end else begin
+          next_state = COMP_READY;
         end
+      end
+      COMP_READY: begin
+        next_state = COMP;
+      end
+      COMP_LAST: begin
+        next_state = IDLE;
       end
     endcase
   end
 
-  assign comp_en = (current_state == COMP);
-  assign ready   = (current_state == IDLE);
+  assign comp_en = (current_state == COMP) || (current_state == COMP_READY) || (current_state == COMP_LAST);
+  assign ready   = (current_state == IDLE) || (current_state == COMP_READY);
 
 endmodule
