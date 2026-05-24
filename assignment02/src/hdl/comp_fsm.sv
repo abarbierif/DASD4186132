@@ -13,7 +13,7 @@ module comp_fsm(
   logic last_sample_reg;
 
   always_ff @(posedge clk) begin
-    last_sample_reg <= 0;
+    last_sample_reg <= last_sample;
   end
 
   always_ff @(posedge clk) begin
