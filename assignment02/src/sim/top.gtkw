@@ -1,18 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri May 22 23:08:49 2026
+[*] Sun May 24 20:13:44 2026
 [*]
 [dumpfile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.vcd"
-[dumpfile_mtime] "Fri May 22 23:06:28 2026"
-[dumpfile_size] 27598332
+[dumpfile_mtime] "Sun May 24 20:11:23 2026"
+[dumpfile_size] 71547447
 [savefile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.gtkw"
 [timestart] 0
 [size] 1536 896
 [pos] 0 27
-*-25.161901 41965000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-30.154762 3521575000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_top.
 [treeopen] tb_top.dut.
 [treeopen] tb_top.dut.acquisiton_thread_inst.
+[treeopen] tb_top.dut.ad1_thread_inst.
+[treeopen] tb_top.dut.processing_thread_inst.
 [treeopen] tb_top.dut.processing_thread_inst.max_inst.
 [treeopen] tb_top.dut.visualization_thread_inst.
 [sst_width] 291
@@ -25,8 +27,6 @@ tb_top.rst
 tb_top.start
 tb_top.dut.acquisiton_thread_inst.mode
 tb_top.cs
-@24
-tb_top.dut.acquisiton_thread_inst.m_samples[10:0]
 @200
 -ACQUISITION
 @24
@@ -58,6 +58,8 @@ tb_top.dut.acquisiton_thread_inst.data0_q2_12[13:0]
 @28
 tb_top.dut.acquisiton_thread_inst.start_ad1_driver
 tb_top.dut.acquisiton_thread_inst.start_processing
+@24
+tb_top.dut.acquisiton_thread_inst.m_samples[10:0]
 @200
 -
 @28
@@ -70,7 +72,33 @@ tb_top.dut.processing_thread_inst.data_in[13:0]
 @28
 tb_top.dut.processing_thread_inst.start
 tb_top.dut.processing_thread_inst.rms_inst.last_sample
+@200
+-
+@28
+tb_top.dut.processing_thread_inst.rms_ready
+tb_top.dut.processing_thread_inst.mean_ready
+tb_top.dut.processing_thread_inst.min_ready
+tb_top.dut.processing_thread_inst.max_ready
 tb_top.dut.processing_thread_inst.ready
+@200
+-
+@28
+tb_top.dut.processing_thread_inst.max_inst.max_fsm.start
+tb_top.dut.processing_thread_inst.max_inst.max_fsm.last_sample
+@29
+tb_top.dut.processing_thread_inst.max_inst.max_fsm.last_sample_reg
+@28
+tb_top.dut.processing_thread_inst.max_inst.max_fsm.comp_en
+@420
+tb_top.dut.processing_thread_inst.max_inst.max_fsm.current_state
+tb_top.dut.processing_thread_inst.max_inst.max_fsm.next_state
+@200
+-
+@24
+tb_top.dut.processing_thread_inst.lut_div.addr[9:0]
+@40000024
+[fpshift_count] 20
+tb_top.dut.processing_thread_inst.lut_div.data_out[19:0]
 @200
 -RMS
 @40000024
@@ -80,7 +108,7 @@ tb_top.dut.processing_thread_inst.data_in[13:0]
 tb_top.dut.processing_thread_inst.rms_inst.x2_reg[23:0]
 [fpshift_count] 20
 tb_top.dut.processing_thread_inst.rms_inst.acc_x2_reg[33:0]
-[color] 2
+[color] 4
 [fpshift_count] 14
 tb_top.dut.processing_thread_inst.rms_inst.div_x2_reg[17:0]
 @200
@@ -148,7 +176,6 @@ tb_top.dut.processing_thread_inst.max_inst.ready
 @28
 tb_top.dut.visualization_thread_inst.metrics_ready_rising
 tb_top.dut.visualization_thread_inst.start_acquisition_rising
-@29
 tb_top.dut.visualization_thread_inst.display
 @200
 -
