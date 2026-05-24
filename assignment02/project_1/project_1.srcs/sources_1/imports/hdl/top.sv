@@ -53,6 +53,7 @@ module top(
     .data0(data0_ad1),
     .data1(data1_ad1),
     .ad1_driver_ready(ad1_driver_ready),
+    .processing_ready(processing_ready),
     .n_samples(n_samples),
     .last_sample(last_sample),
     .start_processing(start_processing),

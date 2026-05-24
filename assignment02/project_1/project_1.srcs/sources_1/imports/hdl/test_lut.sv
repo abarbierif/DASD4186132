@@ -1,6 +1,7 @@
 module test_lut(
   input clk,
   input rst,
+  input r_en,
   input [9:0] addr,
   output logic [13:0] data_out
 );
@@ -8,8 +9,13 @@ module test_lut(
   logic [13:0] test [0:1023];
 
   always_ff @(posedge clk) begin
-    if(rst)  data_out <= 0;
-    else     data_out <= test[addr];
+    if(rst) begin
+      data_out <= 0;
+    end else begin
+      if(r_en) begin
+        data_out <= test[addr];
+      end
+    end
   end
 
   initial begin

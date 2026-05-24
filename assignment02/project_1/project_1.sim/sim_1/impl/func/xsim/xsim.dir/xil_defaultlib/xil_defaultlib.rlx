@@ -1,0 +1,6 @@
+0.7
+2020.2
+May 22 2024
+18:54:44
+/home/abarf/Documents/repos/DASD4186132/assignment02/project_1/project_1.sim/sim_1/impl/func/xsim/tb_top_func_impl.v,1779499299,verilog,,,,acquisition_thread;ad1_driver;ad1_thread;bin2bcd;bin2bcd_3;bin2bcd_4;bin2bcd_5;bin2bcd_multi;binto7seg;clk_divider;clockDivider;comp_fsm;comp_fsm_6;displayDriver;display_fsm;div_lut;glbl;max;mean;mean_fsm;min;mode_fsm;norm_lut;processing_thread;rms;rms_fsm;samples_fsm;scale_pipe_fsm;seven_seg;seven_seg_0;seven_seg_1;seven_seg_2;test_lut;top;visualization_thread,,uvm,,,,,,
+/home/abarf/Documents/repos/DASD4186132/assignment02/project_1/project_1.srcs/sim_1/imports/sim/tb_top.sv,1779494969,systemVerilog,,,,tb_top,,uvm,,,,,,

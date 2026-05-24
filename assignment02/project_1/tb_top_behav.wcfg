@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="2,317.805000 us"></ZoomStartTime>
-      <ZoomEndTime time="2,344.755001 us"></ZoomEndTime>
-      <Cursor1Time time="2,330.755000 us"></Cursor1Time>
+      <ZoomStartTime time="1,017,975.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,019,773.001 ns"></ZoomEndTime>
+      <Cursor1Time time="1,018,585.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="148"></NameColumnWidth>
-      <ValueColumnWidth column_width="77"></ValueColumnWidth>
+      <NameColumnWidth column_width="195"></NameColumnWidth>
+      <ValueColumnWidth column_width="91"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="42" />
+   <WVObjectSize size="66" />
    <wvobject type="logic" fp_name="/tb_top/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -73,6 +73,71 @@
       <obj_property name="ElementShortName">dp</obj_property>
       <obj_property name="ObjectShortName">dp</obj_property>
    </wvobject>
+   <wvobject fp_name="divider89" type="divider">
+      <obj_property name="label">ACQUISITION</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/m_samples">
+      <obj_property name="ElementShortName">m_samples[10:0]</obj_property>
+      <obj_property name="ObjectShortName">m_samples[10:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/fsm_samples/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/test">
+      <obj_property name="ElementShortName">test</obj_property>
+      <obj_property name="ObjectShortName">test</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/ad1_driver_ready">
+      <obj_property name="ElementShortName">ad1_driver_ready</obj_property>
+      <obj_property name="ObjectShortName">ad1_driver_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/data0">
+      <obj_property name="ElementShortName">data0[11:0]</obj_property>
+      <obj_property name="ObjectShortName">data0[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/test_lut_data_out">
+      <obj_property name="ElementShortName">test_lut_data_out[13:0]</obj_property>
+      <obj_property name="ObjectShortName">test_lut_data_out[13:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/data0_q2_12">
+      <obj_property name="ElementShortName">data0_q2_12[13:0]</obj_property>
+      <obj_property name="ObjectShortName">data0_q2_12[13:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/data_q2_12">
+      <obj_property name="ElementShortName">data_q2_12[13:0]</obj_property>
+      <obj_property name="ObjectShortName">data_q2_12[13:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/test_lut_addr_count">
+      <obj_property name="ElementShortName">test_lut_addr_count[10:0]</obj_property>
+      <obj_property name="ObjectShortName">test_lut_addr_count[10:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/test_lut_addr">
+      <obj_property name="ElementShortName">test_lut_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">test_lut_addr[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/last_sample">
+      <obj_property name="ElementShortName">last_sample</obj_property>
+      <obj_property name="ObjectShortName">last_sample</obj_property>
+   </wvobject>
    <wvobject fp_name="divider43" type="divider">
       <obj_property name="label">PROCESSING</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -92,10 +157,6 @@
    <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/data_in">
       <obj_property name="ElementShortName">data_in[13:0]</obj_property>
       <obj_property name="ObjectShortName">data_in[13:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/sqrt">
-      <obj_property name="ElementShortName">sqrt[13:0]</obj_property>
-      <obj_property name="ObjectShortName">sqrt[13:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
@@ -108,6 +169,28 @@
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider109" type="divider">
+      <obj_property name="label">max_min</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/comp_en">
+      <obj_property name="ElementShortName">comp_en</obj_property>
+      <obj_property name="ObjectShortName">comp_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/last_sample">
+      <obj_property name="ElementShortName">last_sample</obj_property>
+      <obj_property name="ObjectShortName">last_sample</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/current_state">
+      <obj_property name="ElementShortName">current_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/next_state">
+      <obj_property name="ElementShortName">next_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[31:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max">
       <obj_property name="ElementShortName">max[13:0]</obj_property>
@@ -116,6 +199,8 @@
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/min">
       <obj_property name="ElementShortName">min[13:0]</obj_property>
@@ -124,6 +209,54 @@
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider99" type="divider">
+      <obj_property name="label">sqrt</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/mult_en">
+      <obj_property name="ElementShortName">mult_en</obj_property>
+      <obj_property name="ObjectShortName">mult_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/x2_reg">
+      <obj_property name="ElementShortName">x2_reg[23:0]</obj_property>
+      <obj_property name="ObjectShortName">x2_reg[23:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">20</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/acc_x2_reg">
+      <obj_property name="ElementShortName">acc_x2_reg[33:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_x2_reg[33:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">20</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/div_x2_reg">
+      <obj_property name="ElementShortName">div_x2_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">div_x2_reg[17:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/sqrt">
+      <obj_property name="ElementShortName">sqrt[13:0]</obj_property>
+      <obj_property name="ObjectShortName">sqrt[13:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/ready">
       <obj_property name="ElementShortName">ready</obj_property>
@@ -152,6 +285,10 @@
    <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/div_lut_data">
       <obj_property name="ElementShortName">div_lut_data[19:0]</obj_property>
       <obj_property name="ObjectShortName">div_lut_data[19:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">20</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="divider28" type="divider">
       <obj_property name="label">VISUALIZATION</obj_property>

@@ -1,0 +1,5 @@
+Time resolution is 1 ps
+$finish called at time : 2420540 ns : File "/home/abarf/Documents/repos/DASD4186132/assignment02/project_1/project_1.srcs/sim_1/imports/sim/tb_top.sv" Line 118
+$finish called at time : 2420540 ns : File "/home/abarf/Documents/repos/DASD4186132/assignment02/project_1/project_1.srcs/sim_1/imports/sim/tb_top.sv" Line 118
+$finish called at time : 2420540 ns : File "/home/abarf/Documents/repos/DASD4186132/assignment02/project_1/project_1.srcs/sim_1/imports/sim/tb_top.sv" Line 118
+INFO: xsimkernel Simulation Memory Usage: 104932 KB (Peak: 167324 KB), Simulation CPU Usage: 95740 ms
