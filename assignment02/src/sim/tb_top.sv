@@ -38,15 +38,24 @@ module tb_top();
 
     clk=0;
     rst=1;
-    n_samples=10'd10;
     start=0;
-    mode=0;
+    mode=1;
     metric_sel=2'b00;
 
     #50;
     rst=0;
+    n_samples=10'b0;
+    
+    #15000;
+    start=1;
+    #1000000;
+    start=0;
 
     #50;
+    n_samples=10'd10;
+    
+    #15000;
+    mode=0;
     start=1;
     #30;
     start=0;
@@ -70,7 +79,7 @@ module tb_top();
     start=0;
    
     #25000;
-    n_samples=10'd0;
+    n_samples=0;
 
     #15000;
     start=1;
@@ -78,7 +87,7 @@ module tb_top();
     start=0;
     
     #15000;
-    n_samples=10'd117;
+    n_samples=10'd1017;
 
     #15000;
     start=1;
@@ -95,11 +104,10 @@ module tb_top();
     start=0;
     
     #200000; 
-    n_samples=10'd119;
+    n_samples=10'd1019;
 
     #15000;
     start=1;
-    
     #500000
     start=0;
 
@@ -119,6 +127,7 @@ module tb_top();
     #10000 $finish;
 
   end
+
 
   always #5 clk = ~clk;
   always @(negedge sclk) d0 = $urandom_range(0, 1);
