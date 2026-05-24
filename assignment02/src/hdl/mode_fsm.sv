@@ -19,7 +19,7 @@ module mode_fsm(
     next_state = current_state;
     case(current_state)
       IDLE: begin
-        if(start) begin
+        if(ready) begin
           if(mode) begin
             next_state = TEST;
           end else begin
@@ -29,12 +29,16 @@ module mode_fsm(
       end
       ADC: begin
         if(ready) begin
-          next_state = IDLE;
+          if(mode) begin
+            next_state = TEST;
+          end
         end
       end
       TEST: begin
         if(ready) begin
-          next_state = IDLE;
+          if(!mode) begin
+            next_state = ADC;
+          end
         end
       end
     endcase

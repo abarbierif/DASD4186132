@@ -8,6 +8,8 @@ module acquisition_thread(
   input [11:0] data0,
   input [11:0] data1,
   input ad1_driver_ready,
+  // processing ready
+  input processing_ready,
   // outputs for processing_thread
   output logic [9:0] n_samples,
   output logic last_sample,
@@ -73,6 +75,7 @@ module acquisition_thread(
   test_lut lut_test(
     .clk(clk),
     .rst(rst),
+    .r_en(processing_ready),
     .addr(test_lut_addr),
     .data_out(test_lut_data_out)
   );
@@ -87,7 +90,9 @@ module acquisition_thread(
 	      data1_reg <= data1;
       end
       
+      if(processing_ready) begin
         data0_q2_12 <= data0_scaled;
+      end
     end
   end
 
