@@ -1,0 +1,17 @@
+# simulation files
+*.vcd
+*.out
+
+# vivado directories and artifacts
+*.ip_user_files/
+*.hw/
+*.sim/
+*.runs/
+*.cache/
+*.gen/
+*.log
+*.jou
+*.Xil
+
+*.zip
+*.venv
