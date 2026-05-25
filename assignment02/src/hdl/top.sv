@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module top(
   input clk,
   input rst,
@@ -29,10 +30,33 @@ module top(
   
   logic acquisition_ready, processing_ready, metrics_ready;
   assign metrics_ready = acquisition_ready & processing_ready;
+  
+  logic rst_pulse, start_pulse;
+  logic clk_buttons;
+
+  
+  clockDivider #(.TC(2000)) buttons_clk(
+    .clk(clk),
+    .divClk(clk_buttons)
+  );
+
+  buttonEdgeDetect rst_rising(
+    .button(rst),
+    .clk(clk),
+    .divClk(clk_buttons),
+    .edgeDet(rst_pulse)
+  );
+
+  buttonEdgeDetect start_rising(
+    .button(start),
+    .clk(clk),
+    .divClk(clk_buttons),
+    .edgeDet(start_pulse)
+  );
 
   ad1_thread ad1_thread_inst(
     .clk(clk),
-    .rst(rst),
+    .rst(rst_pulse),
     .start(start_ad1_driver),
     .ready(ad1_driver_ready),
     .data0(data0_ad1),
@@ -45,8 +69,8 @@ module top(
 
   acquisition_thread acquisiton_thread_inst(
     .clk(clk),
-    .rst(rst),
-    .start(start),
+    .rst(rst_pulse),
+    .start(start_pulse),
     .mode(mode),
     .n(N),
     .data0(data0_ad1),
@@ -63,7 +87,7 @@ module top(
 
   processing_thread processing_thread_inst(
     .clk(clk),
-    .rst(rst),
+    .rst(rst_pulse),
     .start(start_processing),
     .n_samples(n_samples),
     .last_sample(last_sample),
@@ -77,7 +101,7 @@ module top(
 
   visualization_thread visualization_thread_inst(
     .clk(clk),
-    .rst(rst),
+    .rst(rst_pulse),
     .sqrt(sqrt),
     .mean(mean),
     .max(max),

@@ -28,7 +28,8 @@ module AD1_drv (input logic start, reset, clk, divClk, output logic ready,
 
     logic [4:0] state=0, nextState;  // registro de estado y transición
 
-    logic clkEn = divClk & ~SCLK;
+    logic clkEn;
+    assign clkEn = divClk & ~SCLK;
 
     always_ff @(posedge clk) begin : SCLK_driver
         if (reset) begin
