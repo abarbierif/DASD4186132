@@ -37,7 +37,7 @@ module ad1_driver(
     next_state = current_state;
     if(current_state == 0) begin
       if(start) begin
-	next_state = 1;
+	      next_state = 1;
       end
     end else if(current_state < 15) begin
       next_state = current_state + 1;
@@ -49,8 +49,8 @@ module ad1_driver(
   // shif register
   always_ff @(posedge clk) begin
     if(clk_en && shift) begin
-      data0 <= {data0, d0};
-      data1 <= {data1, d1};
+      data0 <= {data0[10:0], d0};
+      data1 <= {data1[10:0], d1};
     end
   end
 
