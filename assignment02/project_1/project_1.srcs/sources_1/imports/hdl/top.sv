@@ -30,9 +30,24 @@ module top(
   
   logic acquisition_ready, processing_ready, metrics_ready;
   assign metrics_ready = acquisition_ready & processing_ready;
+  logic locked, clk_200mhz;
+  logic start_en;
+  
+  // start is allowed when locked is high, this way we ensure clk_200mhz is ready and stable
+  assign start_en = start & locked; 
+  
+  clk_wiz_0 clk_wiz(
+  // Clock in ports
+  .clk_in1(clk),
+  // Clock out ports
+  .clk_out1(clk_200mhz),
+  // Status and control signals
+  .reset(rst),
+  .locked(locked)
+ );
 
   ad1_thread ad1_thread_inst(
-    .clk(clk),
+    .clk(clk_200mhz),
     .rst(rst),
     .start(start_ad1_driver),
     .ready(ad1_driver_ready),
@@ -45,9 +60,9 @@ module top(
   );
 
   acquisition_thread acquisiton_thread_inst(
-    .clk(clk),
+    .clk(clk_200mhz),
     .rst(rst),
-    .start(start),
+    .start(start_en),
     .mode(mode),
     .n(N),
     .data0(data0_ad1),
@@ -63,7 +78,7 @@ module top(
   );
 
   processing_thread processing_thread_inst(
-    .clk(clk),
+    .clk(clk_200mhz),
     .rst(rst),
     .start(start_processing),
     .n_samples(n_samples),
@@ -77,7 +92,7 @@ module top(
   );
 
   visualization_thread visualization_thread_inst(
-    .clk(clk),
+    .clk(clk_200mhz),
     .rst(rst),
     .sqrt(sqrt),
     .mean(mean),

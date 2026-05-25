@@ -64,7 +64,7 @@ module binto7seg(
   logic [63:0] seg_output;
     
     
-  clockDivider clk_div (
+  clockDivider #(.TC(2500)) clk_div (
 	  .clk (clk),
 	  .divClk (clk_slow)
   );
