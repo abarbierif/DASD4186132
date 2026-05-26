@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon May 25 23:38:07 2026
+[*] Tue May 26 00:13:43 2026
 [*]
 [dumpfile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.vcd"
-[dumpfile_mtime] "Mon May 25 23:27:35 2026"
-[dumpfile_size] 30365990
+[dumpfile_mtime] "Mon May 25 23:38:39 2026"
+[dumpfile_size] 65668972
 [savefile] "/home/abarf/Documents/repos/DASD4186132/assignment02/src/sim/top.gtkw"
-[timestart] 14699500
+[timestart] 0
 [size] 1536 896
 [pos] 0 27
-*-17.154762 14735000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-30.154762 1115130000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_top.
 [treeopen] tb_top.dut.
 [treeopen] tb_top.dut.acquisiton_thread_inst.

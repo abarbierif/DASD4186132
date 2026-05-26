@@ -30,7 +30,8 @@ module top(
   
   logic acquisition_ready, processing_ready, metrics_ready;
   assign metrics_ready = acquisition_ready & processing_ready;
-
+  
+  /*
   logic rst_pulse, start_pulse;
   logic clk_buttons;
   
@@ -52,10 +53,11 @@ module top(
     .divClk(clk_buttons),
     .edgeDet(start_pulse)
   );
+  */
 
   ad1_thread ad1_thread_inst(
     .clk(clk),
-    .rst(rst_pulse),
+    .rst(rst),
     .start(start_ad1_driver),
     .ready(ad1_driver_ready),
     .data0(data0_ad1),
@@ -68,8 +70,8 @@ module top(
 
   acquisition_thread acquisiton_thread_inst(
     .clk(clk),
-    .rst(rst_pulse),
-    .start(start_pulse),
+    .rst(rst),
+    .start(start),
     .mode(mode),
     .n(N),
     .data0(data0_ad1),
@@ -86,7 +88,7 @@ module top(
 
   processing_thread processing_thread_inst(
     .clk(clk),
-    .rst(rst_pulse),
+    .rst(rst),
     .start(start_processing),
     .n_samples(n_samples),
     .last_sample(last_sample),
@@ -100,7 +102,7 @@ module top(
 
   visualization_thread visualization_thread_inst(
     .clk(clk),
-    .rst(rst_pulse),
+    .rst(rst),
     .sqrt(sqrt),
     .mean(mean),
     .max(max),
