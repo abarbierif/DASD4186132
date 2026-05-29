@@ -1,8 +1,10 @@
+// LUT de 1024 entradas con valores de prueba en formato U2.12 (rango 0 a 3.3 V).
+// Valores generados aleatoriamente; lectura sincrónica habilitada por r_en.
 module test_lut(
-  input clk,
-  input rst,
-  input r_en,
-  input [9:0] addr,
+  input        clk,
+  input        rst,
+  input        r_en,    // habilita lectura; conectado a processing_ready
+  input  [9:0] addr,
   output logic [13:0] data_out
 );
 

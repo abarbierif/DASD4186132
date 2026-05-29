@@ -1,12 +1,14 @@
+// FSM de pipeline de escalado. Introduce STAGES ciclos de latencia tras
+// ad1_driver_ready_rising para absorber el pipeline de la multiplicación.
+// scale_pipe_fsm_ready_rising en acquisition_thread señaliza start_processing.
 module scale_pipe_fsm(
-  input clk,
-  input rst,
-  input ad1_driver_ready_rising,
+  input  clk,
+  input  rst,
+  input  ad1_driver_ready_rising,
   output ready
 );
-
   logic [1:0] current_state, next_state;
-  localparam STAGES = 1;
+  localparam STAGES = 1; // latencia del pipeline; ajustar si se añaden etapas
 
   always_ff @(posedge clk) begin
     if(rst) current_state <= 0;
@@ -27,7 +29,4 @@ module scale_pipe_fsm(
   end
 
   assign ready = (current_state == 0);
-
 endmodule
-
-

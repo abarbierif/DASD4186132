@@ -40,91 +40,67 @@ module tb_top();
     rst=1;
     start=0;
     mode=1;
+    n_samples=10'b0;
     metric_sel=2'b00;
 
     #50;
     rst=0;
-    n_samples=10'b0;
     
+    // 1: mode test, minimum samples (8), start held high for long 
     #15000;
     start=1;
     #1000000;
     start=0;
 
     #50;
-    n_samples=10'd10;
-    
-    #15000;
+    n_samples=10'd100; // n_samples changed during processing, what happened?
+   
+    // 2: mode test, 100 samples (108) 
+    #25000;
+    start=1;
+    #50000;
+    start=0;
+
+    // 3: mode test, above the max permitted samples, 1017 (it should saturate to 1024;) 
+    #25000;
+    n_samples=10'd1017;
+    start=1;
+    #30;
+    start=0;
+
+    // 4: mode adc, minimum samples (8), start held high for long 
+    #1000000;
+    n_samples=10'd0;
     mode=0;
     start=1;
-    #30;
+    #50000;
     start=0;
 
-    #15000;
-    start=1;
-    #30;
-    start=0;
-
-    #15000; 
-    start=1;
-    #30;
-    start=0;
-
-    #15000;
-    n_samples=10'd50;
-
-    #15000;
-    start=1;
-    #30;
-    start=0;
+    #50;
+    n_samples=10'd50; // n_samples changed during processing, what happened?
    
-    #25000;
-    n_samples=0;
-
-    #15000;
+    // 5: mode adc, 50 samples (58) 
+    #500000;
     start=1;
-    #30;
+    #1000;
     start=0;
-    
-    #15000;
+
+    // 6: mode adc, above the max permitted samples, 1017 (it should saturate to 1024;) 
+    #200000;
     n_samples=10'd1017;
-
-    #15000;
     start=1;
-    #30;
-    start=0;
-    
-    #950000; 
-    mode=1;
-    n_samples=10'd100;
-
-    #15000;
-    start=1;
-    #30;
-    start=0;
-    
-    #200000; 
-    n_samples=10'd1019;
-
-    #15000;
-    start=1;
-    #500000
+    #1000;
     start=0;
 
-    #500000; 
-    n_samples=10'd0;
-    start=1;
-    #30;
-    start=0;
-
-    #100000; 
+    // 7: checking visualization outputs
+    #1000000; 
     metric_sel=2'b01;
-    #100;
+    #25000;
     metric_sel=2'b10;
-    #100;
+    #25000;
     metric_sel=2'b11;
 
-    #10000 $finish;
+    #900000 $finish;
 
   end
 

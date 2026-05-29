@@ -64,9 +64,9 @@ module binto7seg(
   logic [63:0] seg_output;
     
     
-  clockDivider clk_div (
-	  .clk (clk),
-	  .divClk (clk_slow)
+  clockDivider #(.TC(3000)) clk_div (
+	  .clk(clk),
+	  .divClk(clk_slow)
   );
     
   bin2bcd_multi #(.N_DIGITS(4),.N_BITS(12)) bin2bcd_multi1 (

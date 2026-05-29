@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1,017,975.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,019,773.001 ns"></ZoomEndTime>
-      <Cursor1Time time="1,018,585.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="3,001.000001 us"></ZoomEndTime>
+      <Cursor1Time time="3,001.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="195"></NameColumnWidth>
-      <ValueColumnWidth column_width="91"></ValueColumnWidth>
+      <NameColumnWidth column_width="192"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="66" />
+   <WVObjectSize size="53" />
    <wvobject type="logic" fp_name="/tb_top/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,7 +31,6 @@
    <wvobject type="array" fp_name="/tb_top/n_samples">
       <obj_property name="ElementShortName">n_samples[9:0]</obj_property>
       <obj_property name="ObjectShortName">n_samples[9:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_top/start">
       <obj_property name="ElementShortName">start</obj_property>
@@ -73,82 +72,13 @@
       <obj_property name="ElementShortName">dp</obj_property>
       <obj_property name="ObjectShortName">dp</obj_property>
    </wvobject>
-   <wvobject fp_name="divider89" type="divider">
-      <obj_property name="label">ACQUISITION</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/m_samples">
-      <obj_property name="ElementShortName">m_samples[10:0]</obj_property>
-      <obj_property name="ObjectShortName">m_samples[10:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/fsm_samples/ready">
-      <obj_property name="ElementShortName">ready</obj_property>
-      <obj_property name="ObjectShortName">ready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/test">
-      <obj_property name="ElementShortName">test</obj_property>
-      <obj_property name="ObjectShortName">test</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/ad1_driver_ready">
-      <obj_property name="ElementShortName">ad1_driver_ready</obj_property>
-      <obj_property name="ObjectShortName">ad1_driver_ready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/data0">
-      <obj_property name="ElementShortName">data0[11:0]</obj_property>
-      <obj_property name="ObjectShortName">data0[11:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/test_lut_data_out">
-      <obj_property name="ElementShortName">test_lut_data_out[13:0]</obj_property>
-      <obj_property name="ObjectShortName">test_lut_data_out[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/data0_q2_12">
-      <obj_property name="ElementShortName">data0_q2_12[13:0]</obj_property>
-      <obj_property name="ObjectShortName">data0_q2_12[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/data_q2_12">
-      <obj_property name="ElementShortName">data_q2_12[13:0]</obj_property>
-      <obj_property name="ObjectShortName">data_q2_12[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/test_lut_addr_count">
-      <obj_property name="ElementShortName">test_lut_addr_count[10:0]</obj_property>
-      <obj_property name="ObjectShortName">test_lut_addr_count[10:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/acquisiton_thread_inst/test_lut_addr">
-      <obj_property name="ElementShortName">test_lut_addr[9:0]</obj_property>
-      <obj_property name="ObjectShortName">test_lut_addr[9:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/ready">
-      <obj_property name="ElementShortName">ready</obj_property>
-      <obj_property name="ObjectShortName">ready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/acquisiton_thread_inst/last_sample">
-      <obj_property name="ElementShortName">last_sample</obj_property>
-      <obj_property name="ObjectShortName">last_sample</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider43" type="divider">
+   <wvobject fp_name="divider14" type="divider">
       <obj_property name="label">PROCESSING</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/start">
       <obj_property name="ElementShortName">start</obj_property>
       <obj_property name="ObjectShortName">start</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/n_samples">
-      <obj_property name="ElementShortName">n_samples[9:0]</obj_property>
-      <obj_property name="ObjectShortName">n_samples[9:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/last_sample">
       <obj_property name="ElementShortName">last_sample</obj_property>
@@ -157,6 +87,22 @@
    <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/data_in">
       <obj_property name="ElementShortName">data_in[13:0]</obj_property>
       <obj_property name="ObjectShortName">data_in[13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/div_lut_data">
+      <obj_property name="ElementShortName">div_lut_data[19:0]</obj_property>
+      <obj_property name="ObjectShortName">div_lut_data[19:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/min">
+      <obj_property name="ElementShortName">min[13:0]</obj_property>
+      <obj_property name="ObjectShortName">min[13:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max">
+      <obj_property name="ElementShortName">max[13:0]</obj_property>
+      <obj_property name="ObjectShortName">max[13:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
@@ -169,84 +115,6 @@
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
-      <obj_property name="CustomSignalColor">#FFA500</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider109" type="divider">
-      <obj_property name="label">max_min</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/comp_en">
-      <obj_property name="ElementShortName">comp_en</obj_property>
-      <obj_property name="ObjectShortName">comp_en</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/last_sample">
-      <obj_property name="ElementShortName">last_sample</obj_property>
-      <obj_property name="ObjectShortName">last_sample</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/current_state">
-      <obj_property name="ElementShortName">current_state[31:0]</obj_property>
-      <obj_property name="ObjectShortName">current_state[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/next_state">
-      <obj_property name="ElementShortName">next_state[31:0]</obj_property>
-      <obj_property name="ObjectShortName">next_state[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/max">
-      <obj_property name="ElementShortName">max[13:0]</obj_property>
-      <obj_property name="ObjectShortName">max[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-      <obj_property name="CustomSignalColor">#FFA500</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/min">
-      <obj_property name="ElementShortName">min[13:0]</obj_property>
-      <obj_property name="ObjectShortName">min[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-      <obj_property name="CustomSignalColor">#FFA500</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/max_inst/max_fsm/ready">
-      <obj_property name="ElementShortName">ready</obj_property>
-      <obj_property name="ObjectShortName">ready</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider99" type="divider">
-      <obj_property name="label">sqrt</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/mult_en">
-      <obj_property name="ElementShortName">mult_en</obj_property>
-      <obj_property name="ObjectShortName">mult_en</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/x2_reg">
-      <obj_property name="ElementShortName">x2_reg[23:0]</obj_property>
-      <obj_property name="ObjectShortName">x2_reg[23:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">20</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/acc_x2_reg">
-      <obj_property name="ElementShortName">acc_x2_reg[33:0]</obj_property>
-      <obj_property name="ObjectShortName">acc_x2_reg[33:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">20</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/div_x2_reg">
-      <obj_property name="ElementShortName">div_x2_reg[17:0]</obj_property>
-      <obj_property name="ObjectShortName">div_x2_reg[17:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">16</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/sqrt">
       <obj_property name="ElementShortName">sqrt[13:0]</obj_property>
@@ -255,12 +123,6 @@
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
-      <obj_property name="CustomSignalColor">#FFA500</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/ready">
-      <obj_property name="ElementShortName">ready</obj_property>
-      <obj_property name="ObjectShortName">ready</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/min_ready">
       <obj_property name="ElementShortName">min_ready</obj_property>
@@ -270,93 +132,120 @@
       <obj_property name="ElementShortName">max_ready</obj_property>
       <obj_property name="ObjectShortName">max_ready</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_ready">
-      <obj_property name="ElementShortName">rms_ready</obj_property>
-      <obj_property name="ObjectShortName">rms_ready</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/mean_ready">
       <obj_property name="ElementShortName">mean_ready</obj_property>
       <obj_property name="ObjectShortName">mean_ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/n_samples_reg">
-      <obj_property name="ElementShortName">n_samples_reg[9:0]</obj_property>
-      <obj_property name="ObjectShortName">n_samples_reg[9:0]</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_ready">
+      <obj_property name="ElementShortName">rms_ready</obj_property>
+      <obj_property name="ObjectShortName">rms_ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/div_lut_data">
-      <obj_property name="ElementShortName">div_lut_data[19:0]</obj_property>
-      <obj_property name="ObjectShortName">div_lut_data[19:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">20</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider28" type="divider">
-      <obj_property name="label">VISUALIZATION</obj_property>
+   <wvobject type="vbus" fp_name="vbus53">
+      <obj_property name="label">rms</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/visualization_thread_inst/metrics_ready_rising">
-      <obj_property name="ElementShortName">metrics_ready_rising</obj_property>
-      <obj_property name="ObjectShortName">metrics_ready_rising</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/visualization_thread_inst/start_acquisition_rising">
-      <obj_property name="ElementShortName">start_acquisition_rising</obj_property>
-      <obj_property name="ObjectShortName">start_acquisition_rising</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/last_sample">
+      <obj_property name="ElementShortName">last_sample</obj_property>
+      <obj_property name="ObjectShortName">last_sample</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/visualization_thread_inst/display">
-      <obj_property name="ElementShortName">display</obj_property>
-      <obj_property name="ObjectShortName">display</obj_property>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/data_in">
+      <obj_property name="ElementShortName">data_in[13:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/metric_sel">
-      <obj_property name="ElementShortName">metric_sel[1:0]</obj_property>
-      <obj_property name="ObjectShortName">metric_sel[1:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/div_lut_data">
+      <obj_property name="ElementShortName">div_lut_data[19:0]</obj_property>
+      <obj_property name="ObjectShortName">div_lut_data[19:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/sqrt">
-      <obj_property name="ElementShortName">sqrt[13:0]</obj_property>
-      <obj_property name="ObjectShortName">sqrt[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/mult_en">
+      <obj_property name="ElementShortName">mult_en</obj_property>
+      <obj_property name="ObjectShortName">mult_en</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/mean">
-      <obj_property name="ElementShortName">mean[13:0]</obj_property>
-      <obj_property name="ObjectShortName">mean[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/acc_en">
+      <obj_property name="ElementShortName">acc_en</obj_property>
+      <obj_property name="ObjectShortName">acc_en</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/max">
-      <obj_property name="ElementShortName">max[13:0]</obj_property>
-      <obj_property name="ObjectShortName">max[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/div0_en">
+      <obj_property name="ElementShortName">div0_en</obj_property>
+      <obj_property name="ObjectShortName">div0_en</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/min">
-      <obj_property name="ElementShortName">min[13:0]</obj_property>
-      <obj_property name="ObjectShortName">min[13:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">12</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/div1_en">
+      <obj_property name="ElementShortName">div1_en</obj_property>
+      <obj_property name="ObjectShortName">div1_en</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/metric_scaled_reg">
-      <obj_property name="ElementShortName">metric_scaled_reg[11:0]</obj_property>
-      <obj_property name="ObjectShortName">metric_scaled_reg[11:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/norm0_en">
+      <obj_property name="ElementShortName">norm0_en</obj_property>
+      <obj_property name="ObjectShortName">norm0_en</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/seg">
-      <obj_property name="ElementShortName">seg[7:0]</obj_property>
-      <obj_property name="ObjectShortName">seg[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/norm1_en">
+      <obj_property name="ElementShortName">norm1_en</obj_property>
+      <obj_property name="ObjectShortName">norm1_en</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_top/dut/visualization_thread_inst/an">
-      <obj_property name="ElementShortName">an[7:0]</obj_property>
-      <obj_property name="ObjectShortName">an[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr0_en">
+      <obj_property name="ElementShortName">nr0_en</obj_property>
+      <obj_property name="ObjectShortName">nr0_en</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_top/dut/visualization_thread_inst/dp">
-      <obj_property name="ElementShortName">dp</obj_property>
-      <obj_property name="ObjectShortName">dp</obj_property>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr1_en">
+      <obj_property name="ElementShortName">nr1_en</obj_property>
+      <obj_property name="ObjectShortName">nr1_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr2_en">
+      <obj_property name="ElementShortName">nr2_en</obj_property>
+      <obj_property name="ObjectShortName">nr2_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr3_en">
+      <obj_property name="ElementShortName">nr3_en</obj_property>
+      <obj_property name="ObjectShortName">nr3_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr4_en">
+      <obj_property name="ElementShortName">nr4_en</obj_property>
+      <obj_property name="ObjectShortName">nr4_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/x2_reg">
+      <obj_property name="ElementShortName">x2_reg[23:0]</obj_property>
+      <obj_property name="ObjectShortName">x2_reg[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/acc_x2_reg">
+      <obj_property name="ElementShortName">acc_x2_reg[33:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_x2_reg[33:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/div_x2_reg">
+      <obj_property name="ElementShortName">div_x2_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">div_x2_reg[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/k_exp_reg">
+      <obj_property name="ElementShortName">k_exp_reg[2:0]</obj_property>
+      <obj_property name="ObjectShortName">k_exp_reg[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr_xk_2_reg">
+      <obj_property name="ElementShortName">nr_xk_2_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">nr_xk_2_reg[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr_xk2_reg">
+      <obj_property name="ElementShortName">nr_xk2_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">nr_xk2_reg[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr_xk2x_reg">
+      <obj_property name="ElementShortName">nr_xk2x_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">nr_xk2x_reg[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr_3_xk2x_reg">
+      <obj_property name="ElementShortName">nr_3_xk2x_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">nr_3_xk2x_reg[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/nr_xk_2_3_xk2x_reg">
+      <obj_property name="ElementShortName">nr_xk_2_3_xk2x_reg[17:0]</obj_property>
+      <obj_property name="ObjectShortName">nr_xk_2_3_xk2x_reg[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/last_sample_reg0">
+      <obj_property name="ElementShortName">last_sample_reg0</obj_property>
+      <obj_property name="ObjectShortName">last_sample_reg0</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_top/dut/processing_thread_inst/rms_inst/last_sample_reg1">
+      <obj_property name="ElementShortName">last_sample_reg1</obj_property>
+      <obj_property name="ObjectShortName">last_sample_reg1</obj_property>
    </wvobject>
 </wave_config>
