@@ -14,13 +14,19 @@ module slave_master_axis_fsm(
   
   input  tlast,
   input  stream_sync_in,
+  input  counter8_done,
+  input  counter32_done,
+  input  finished,
   output stream_sync_out,
   output store_input_stream,
+  output compare_enable,
+  output counter8_enable,
+  output counter32_enable,
   output set_output_stream,
   output reg clear_output_stream
 );
 
-  typedef enum {IDLE, SET_TREADY, WAIT_TVALID, STREAM_SYNC, SET_OUTPUT_STREAM, CHECK_TLAST} state_t;
+  typedef enum {IDLE, SET_TREADY, WAIT_TVALID, STREAM_SYNC, COMPARE, CHECK_COUNTER8, CHECK_COUNTER32, SET_OUTPUT_STREAM, CHECK_TLAST} state_t;
   state_t current_state, next_state;
 
   logic data_valid;
@@ -46,8 +52,25 @@ module slave_master_axis_fsm(
         end 
       end
       STREAM_SYNC: begin
-        if(stream_sync_in) begin
+        if(stream_sync_in || finished) begin
+          next_state = COMPARE;
+        end
+      end
+      COMPARE: begin
+        next_state = CHECK_COUNTER8;
+      end
+      CHECK_COUNTER8: begin
+        if(counter8_done) begin
+          next_state = CHECK_COUNTER32;
+        end else begin
+          next_state = SET_TREADY;
+        end
+      end
+      CHECK_COUNTER32: begin
+        if(tlast || counter32_done) begin
           next_state = SET_OUTPUT_STREAM;
+        end else begin
+          next_state = CHECK_TLAST;
         end
       end
       SET_OUTPUT_STREAM: begin
@@ -67,10 +90,13 @@ module slave_master_axis_fsm(
   
 
   // output logic
-  assign store_input_stream  = ((current_state == WAIT_TVALID) & data_valid);
+  assign store_input_stream  = ((current_state == WAIT_TVALID) && data_valid);
   assign stream_sync_out     = (current_state == STREAM_SYNC);
-  assign set_output_stream   = (current_state == STREAM_SYNC) & stream_sync_in;
-  assign clear_output_stream = !(((current_state == STREAM_SYNC) & stream_sync_in) || (current_state == SET_OUTPUT_STREAM) & !m_axis_tready);
+  assign compare_enable      = ((current_state == STREAM_SYNC) && stream_sync_in);
+  assign counter8_enable     = (current_state == COMPARE);
+  assign counter32_enable    = ((current_state == CHECK_COUNTER8) && counter8_done);
+  assign set_output_stream   = ((current_state == CHECK_COUNTER32) && (tlast || counter32_done));
+  assign clear_output_stream = ((current_state == SET_OUTPUT_STREAM) && m_axis_tready);
 
   always_ff @(posedge clk) begin
     if(rst) begin
@@ -80,15 +106,15 @@ module slave_master_axis_fsm(
     end else begin
       if(current_state == SET_TREADY) begin
         s_axis_tready <= 1;
-      end else if((current_state == WAIT_TVALID) & data_valid) begin
+      end else if((current_state == WAIT_TVALID) && data_valid) begin
         s_axis_tready <= 0;
       end
 
-      if((current_state == STREAM_SYNC) & stream_sync_in) begin
+      if((current_state == CHECK_COUNTER32) && (tlast || counter32_done)) begin
         m_axis_tkeep  <= 4'hf;
         m_axis_tvalid <= 1;
         m_axis_tlast  <= tlast;
-      end else if((current_state == SET_OUTPUT_STREAM) & m_axis_tready) begin
+      end else if((current_state == SET_OUTPUT_STREAM) && m_axis_tready) begin
         m_axis_tkeep  <= 0;
         m_axis_tvalid <= 0;
         m_axis_tlast  <= 0;

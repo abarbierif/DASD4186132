@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <xil_io.h>
+#include <xil_types.h>
 #include "xaxidma.h"
 #include "platform.h"
 #include "xil_printf.h"
@@ -10,11 +11,11 @@
 #define KMER_SIZE_BYTES   31
 #define PADDING_BYTES     1
 #define KMER_TOTAL_BYTES  (KMER_SIZE_BYTES + PADDING_BYTES) // 32 bytes (8 palabras de 32-bit)
-#define NUM_KMERS_1       10//135365
-#define NUM_KMERS_2       10//135262
+#define NUM_KMERS_1       135262
+#define NUM_KMERS_2       135365
 #define BUFFER_SIZE_1     (NUM_KMERS_1 * KMER_TOTAL_BYTES)
 #define BUFFER_SIZE_2     (NUM_KMERS_2 * KMER_TOTAL_BYTES)
-#define BUFFER_SIZE_3     (NUM_KMERS_2 * KMER_TOTAL_BYTES)
+#define BUFFER_SIZE_3     4227 //  8 words as minimum
 
 XAxiDma AxiDma0;
 XAxiDma AxiDma1;
@@ -24,7 +25,7 @@ FIL fil0, fil1;
 
 u8 TxBuffer0[BUFFER_SIZE_1] __attribute__ ((aligned(32)));
 u8 TxBuffer1[BUFFER_SIZE_2] __attribute__ ((aligned(32)));
-u8 RxBuffer[BUFFER_SIZE_3]  __attribute__ ((aligned(32)));
+u32 RxBuffer[BUFFER_SIZE_3]  __attribute__ ((aligned(32)));
 
 int init_sd_and_read_files() {
     FRESULT res;
@@ -35,8 +36,8 @@ int init_sd_and_read_files() {
     if (res != FR_OK) return XST_FAILURE;
 
     // 2. Abrir archivos
-    if (f_open(&fil0, "31mers_7.txt", FA_READ) != FR_OK) return XST_FAILURE;
-    if (f_open(&fil1, "31mers_8.txt", FA_READ) != FR_OK) return XST_FAILURE;
+    if (f_open(&fil0, "31mers_6.txt", FA_READ) != FR_OK) return XST_FAILURE;
+    if (f_open(&fil1, "31mers_5.txt", FA_READ) != FR_OK) return XST_FAILURE;
 
     // 3. Leer y aplicar Padding
     for (int i = 0; i < NUM_KMERS_1; i++) {
@@ -127,21 +128,23 @@ int main()
         RxBuffer[i] = 0x00;
     }
 
+    /*
     for(int i=0; i<5; i++){
         xil_printf("RxBuffer[%d] = %X\r\n", i, RxBuffer[i]);
     }
+    */
 
     xil_printf("RxBuffer created...\r\n");
 
 	Xil_DCacheFlushRange((UINTPTR)TxBuffer0, BUFFER_SIZE_1);
     Xil_DCacheFlushRange((UINTPTR)TxBuffer1, BUFFER_SIZE_2);
-	Xil_DCacheFlushRange((UINTPTR)RxBuffer,  BUFFER_SIZE_3);
+	Xil_DCacheFlushRange((UINTPTR)RxBuffer,  BUFFER_SIZE_3*sizeof(u32));
 
 	XAxiDma_Reset(&AxiDma0);
     XAxiDma_Reset(&AxiDma1);
 
 	// Setup & kick off S2MM channel first
-	Status = XAxiDma_S2MMtransfer(&AxiDma0,(UINTPTR)RxBuffer,BUFFER_SIZE_3);
+	Status = XAxiDma_S2MMtransfer(&AxiDma0,(UINTPTR)RxBuffer,BUFFER_SIZE_3*sizeof(u32));
 	if (Status != XST_SUCCESS){
 		xil_printf("XAXIDMA_DEVICE_TO_DMA transfer failed...\r\n");
 		return XST_FAILURE;
@@ -174,8 +177,9 @@ int main()
 		}
 	}
 
+
 	for(int i=0; i<BUFFER_SIZE_3; i++) {
-		xil_printf("Received data packet %d: %X/%X\r\n", i, (unsigned int)RxBuffer[i], (unsigned int)TxBuffer0[i]);
+		xil_printf("Received data packet %d: %X\r\n", i, (unsigned int)RxBuffer[i]);
 	}
 
     u32 counts = Xil_In32(XPAR_AXIREGS_0_BASEADDR + 0); // 8 transfers per row, a total of 80

@@ -6,6 +6,7 @@ module slave_axis_fsm(
   output logic s_axis_tready,
   
   input  stream_sync_in,
+  input  finished,
   output stream_sync_out,
   output store_input_stream
 );
@@ -36,7 +37,7 @@ module slave_axis_fsm(
         end 
       end
       STREAM_SYNC: begin
-        if(stream_sync_in) begin
+        if(stream_sync_in || finished) begin
           next_state = SET_TREADY;
         end
       end

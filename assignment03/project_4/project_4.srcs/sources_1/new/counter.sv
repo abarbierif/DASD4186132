@@ -2,8 +2,8 @@ module counter #(parameter WIDTH=32, MAX_COUNT=256)(
   input clk,
   input rst,
   input count_en,
-  output logic [WIDTH-1:0] count,
-  output count_done
+  output logic [WIDTH-1:0] count
+  //output count_done
 );
  
   always_ff @(posedge clk)begin
@@ -18,6 +18,6 @@ module counter #(parameter WIDTH=32, MAX_COUNT=256)(
     end
   end
 
-  assign count_done = (count == MAX_COUNT);
+  //assign count_done = (count == MAX_COUNT);
 
 endmodule

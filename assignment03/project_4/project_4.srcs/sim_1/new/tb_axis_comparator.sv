@@ -19,7 +19,7 @@ module tb_axis_comparator();
   logic m_axis_tvalid;
   logic [31:0] done;
   logic [31:0] matches_count;
-  integer j;
+  integer i, j;
 
   axis_comparator_sv dut(
     .clk(clk),
@@ -58,13 +58,13 @@ module tb_axis_comparator();
     #500; reset=0;
     
     #500;
-    for(j=0; j<=32'd8; j=j+1) begin
+    for(j=0; j<=32'd14; j=j+1) begin
       #100;
       m_axis_tready = 0;
       wait(dut.s_axis_tready1 && dut.s_axis_tready2);
       @(negedge clk);
-      s_axis_tdata1 = $urandom(); s_axis_tkeep1 = 4'hf; s_axis_tvalid1 = 1; s_axis_tlast1 = 0;
-      s_axis_tdata2 = $urandom(); s_axis_tkeep2 = 4'hf; s_axis_tvalid2 = 1; s_axis_tlast2 = 0;
+      s_axis_tdata1 = 32'hAAAAAAAA; s_axis_tkeep1 = 4'hf; s_axis_tvalid1 = 1; s_axis_tlast1 = 0;
+      s_axis_tdata2 = 32'hAAAAAAAA; s_axis_tkeep2 = 4'hf; s_axis_tvalid2 = 1; s_axis_tlast2 = 0;
       @(negedge clk);
       s_axis_tkeep1 = 4'h0; s_axis_tvalid1 = 0;  
       s_axis_tkeep2 = 4'h0; s_axis_tvalid2 = 0;
@@ -76,12 +76,40 @@ module tb_axis_comparator();
     m_axis_tready = 0;
     wait(dut.s_axis_tready1 && dut.s_axis_tready2);
     @(negedge clk);
-    s_axis_tdata1 = $urandom(); s_axis_tkeep1 = 4'hf; s_axis_tvalid1 = 1; s_axis_tlast1 = 0;
-    s_axis_tdata2 = $urandom(); s_axis_tkeep2 = 4'hf; s_axis_tvalid2 = 1; s_axis_tlast2 = 1;
+    s_axis_tdata1 = 32'hAAAAAAAA; s_axis_tkeep1 = 4'hf; s_axis_tvalid1 = 1; s_axis_tlast1 = 0;
+    s_axis_tdata2 = 32'hAAAAAAAA; s_axis_tkeep2 = 4'hf; s_axis_tvalid2 = 1; s_axis_tlast2 = 1;
     @(negedge clk);
-    s_axis_tkeep1 = 4'h0; s_axis_tvalid1 = 0;  
-    s_axis_tkeep2 = 4'h0; s_axis_tvalid2 = 0;
+    s_axis_tkeep1 = 4'h0; s_axis_tvalid1 = 0; s_axis_tlast1 = 0; 
+    s_axis_tkeep2 = 4'h0; s_axis_tvalid2 = 0; s_axis_tlast2 = 0;
     #100;
+    @(negedge clk);
+    m_axis_tready = 1;
+    
+    #100;
+    s_axis_tdata2 = $urandom(); s_axis_tkeep2 = 4'h0; s_axis_tvalid2 = 0; s_axis_tlast2 = 0;
+    
+    #500;
+    for(j=0; j<=32'd14; j=j+1) begin
+      #100;
+      m_axis_tready = 0;
+      wait(dut.s_axis_tready1 && dut.s_axis_tready2);
+      @(negedge clk);
+      s_axis_tdata1 = $urandom(); s_axis_tkeep1 = 4'hf; s_axis_tvalid1 = 1; s_axis_tlast1 = 0;
+      @(negedge clk);
+      s_axis_tkeep1 = 4'h0; s_axis_tvalid1 = 0;  
+      #100;
+      m_axis_tready = 1;
+    end
+    
+    #100;
+    m_axis_tready = 0;
+    wait(dut.s_axis_tready1 && dut.s_axis_tready2);
+    @(negedge clk);
+    s_axis_tdata1 = $urandom(); s_axis_tkeep1 = 4'hf; s_axis_tvalid1 = 1; s_axis_tlast1 = 1;
+    @(negedge clk);
+    s_axis_tkeep1 = 4'h0; s_axis_tvalid1 = 0; s_axis_tlast1 = 0; 
+    #100;
+    @(negedge clk);
     m_axis_tready = 1;
 
 
