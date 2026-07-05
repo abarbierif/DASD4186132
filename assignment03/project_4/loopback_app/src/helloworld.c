@@ -11,8 +11,8 @@
 #define KMER_SIZE_BYTES   31
 #define PADDING_BYTES     1
 #define KMER_TOTAL_BYTES  (KMER_SIZE_BYTES + PADDING_BYTES) // 32 bytes (8 palabras de 32-bit)
-#define NUM_KMERS_1       135262
-#define NUM_KMERS_2       135365
+#define NUM_KMERS_1       135365
+#define NUM_KMERS_2       135262
 #define BUFFER_SIZE_1     (NUM_KMERS_1 * KMER_TOTAL_BYTES)
 #define BUFFER_SIZE_2     (NUM_KMERS_2 * KMER_TOTAL_BYTES)
 #define BUFFER_SIZE_3     4227 //  8 words as minimum
@@ -36,8 +36,8 @@ int init_sd_and_read_files() {
     if (res != FR_OK) return XST_FAILURE;
 
     // 2. Abrir archivos
-    if (f_open(&fil0, "31mers_6.txt", FA_READ) != FR_OK) return XST_FAILURE;
-    if (f_open(&fil1, "31mers_5.txt", FA_READ) != FR_OK) return XST_FAILURE;
+    if (f_open(&fil0, "31mers_5.txt", FA_READ) != FR_OK) return XST_FAILURE;
+    if (f_open(&fil1, "31mers_6.txt", FA_READ) != FR_OK) return XST_FAILURE;
 
     // 3. Leer y aplicar Padding
     for (int i = 0; i < NUM_KMERS_1; i++) {

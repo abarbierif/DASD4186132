@@ -205,7 +205,7 @@ module axis_comparator_sv(
   always_ff @(posedge clk) begin
     if(!reset) begin
       finished <= 0;
-    end else if(tlast) begin
+    end else if(tlast && set_output_stream_rising) begin
       finished <= 1;
     end
   end

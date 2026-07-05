@@ -52,8 +52,10 @@ module slave_master_axis_fsm(
         end 
       end
       STREAM_SYNC: begin
-        if(stream_sync_in || finished) begin
+        if(stream_sync_in) begin
           next_state = COMPARE;
+        end else if(finished) begin
+          next_state = SET_TREADY;
         end
       end
       COMPARE: begin
