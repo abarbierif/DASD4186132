@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <xil_io.h>
 #include <xil_types.h>
+#include <xtimer_config.h>
 #include "xaxidma.h"
 #include "platform.h"
 #include "xil_printf.h"
 #include "xparameters.h"
 #include "dma_controller.h"
 #include "ff.h"
+#include "xiltimer.h"
 
 #define KMER_SIZE_BYTES   31
 #define PADDING_BYTES     1
@@ -26,6 +28,7 @@ FIL fil0, fil1;
 u8 TxBuffer0[BUFFER_SIZE_1] __attribute__ ((aligned(32)));
 u8 TxBuffer1[BUFFER_SIZE_2] __attribute__ ((aligned(32)));
 u32 RxBuffer[BUFFER_SIZE_3]  __attribute__ ((aligned(32)));
+u32 histogram[NUM_KMERS_2 + 1] = {0};
 
 int init_sd_and_read_files() {
     FRESULT res;
@@ -61,9 +64,56 @@ int init_sd_and_read_files() {
     return XST_SUCCESS;
 }
 
+u32 software_baseline() {
+    u32 sw_matches = 0;
+    
+    // compare kmer by kmer up to the length of the shorter stream
+    for (int i = 0; i < NUM_KMERS_2; i++) {
+        int kmer_offset = i * KMER_TOTAL_BYTES;
+        int is_match = 1;
+        
+        // check all 31 characters of the current K-mer
+        for (int j = 0; j < KMER_SIZE_BYTES; j++) {
+            if (TxBuffer0[kmer_offset + j] != TxBuffer1[kmer_offset + j]) {
+                is_match = 0;
+                break; // mismatch found, drop out early
+            }
+        }
+        
+        if (is_match) {
+            sw_matches++;
+        }
+    }
+    return sw_matches;
+}
+
+void compute_histogram(){
+
+    // clean histogram
+    for(u32 i = 0; i <= NUM_KMERS_2; i++){
+        histogram[i] = 0;
+    }
+
+    u32 count = 0;
+
+    for (u32 i = 0; i < NUM_KMERS_2; i++) {
+        u32 word = RxBuffer[i / 32];
+        u32 bit  = (word >> (i % 32)) & 0x1;
+
+        if (bit) {
+            count++;
+        } else {
+            histogram[count]++;   // counts run==0 too, i.e. "no-match" gaps
+            count = 0;
+        }
+    }
+    histogram[count]++; // close out a count that reaches the last k-mer
+}
+
 int main()
 {
     init_platform();
+    u32 hw_matches, status = 0;
 
     // read SD files
     if(init_sd_and_read_files() != XST_SUCCESS){
@@ -134,14 +184,23 @@ int main()
     }
     */
 
-    xil_printf("RxBuffer created...\r\n");
-
 	Xil_DCacheFlushRange((UINTPTR)TxBuffer0, BUFFER_SIZE_1);
     Xil_DCacheFlushRange((UINTPTR)TxBuffer1, BUFFER_SIZE_2);
 	Xil_DCacheFlushRange((UINTPTR)RxBuffer,  BUFFER_SIZE_3*sizeof(u32));
 
 	XAxiDma_Reset(&AxiDma0);
     XAxiDma_Reset(&AxiDma1);
+
+    // software baseline
+    XTime start_time, end_time;   
+    XTime_GetTime(&start_time);
+    u32 sw_matches = software_baseline();
+    XTime_GetTime(&end_time);
+
+    double sw_time = (double)(start_time - end_time)/COUNTS_PER_SECOND;
+
+    // hardware processing
+    XTime_GetTime(&start_time);
 
 	// Setup & kick off S2MM channel first
 	Status = XAxiDma_S2MMtransfer(&AxiDma0,(UINTPTR)RxBuffer,BUFFER_SIZE_3*sizeof(u32));
@@ -161,7 +220,19 @@ int main()
 		xil_printf("XAXIDMA_DMA_TO_DEVICE transfer failed...\r\n");
 		return XST_FAILURE;
 	}
+    XTime_GetTime(&end_time);
+    double hw_time_kickoff = (double)(start_time - end_time)/COUNTS_PER_SECOND;
 
+    XTime_GetTime(&start_time);
+    while(status == 0)
+    {
+        status = Xil_In32(XPAR_AXIREGS_0_BASEADDR + 4);
+    }
+
+    XTime_GetTime(&end_time);
+    double hw_time_execution = (double)(start_time - end_time)/COUNTS_PER_SECOND;
+
+    XTime_GetTime(&start_time);
 	while(
         XAxiDma_Busy(&AxiDma0,XAXIDMA_DEVICE_TO_DMA)
         ||XAxiDma_Busy(&AxiDma0,XAXIDMA_DMA_TO_DEVICE)
@@ -176,20 +247,51 @@ int main()
 			xil_printf("DMA1 MM2S channel is busy...\r\n");
 		}
 	}
+    XTime_GetTime(&end_time);
+    double hw_time_tail = (double)(start_time - end_time)/COUNTS_PER_SECOND;
+
+    /*
+    XTime t;
+    for(int i=0;i<20;i++) {
+        XTime_GetTime(&t);
+        printf("%llu\n", (unsigned long long)t);
+    }
+    */
 
 
+    /*
 	for(int i=0; i<BUFFER_SIZE_3; i++) {
-		xil_printf("Received data packet %d: %X\r\n", i, (unsigned int)RxBuffer[i]);
+		xil_printf("Received data packet %d: 0h%08X\r\n", i, (unsigned int)RxBuffer[i]);
 	}
+    */
 
-    u32 counts = Xil_In32(XPAR_AXIREGS_0_BASEADDR + 0); // 8 transfers per row, a total of 80
-    u32 status = Xil_In32(XPAR_AXIREGS_0_BASEADDR + 4);
+    hw_matches = Xil_In32(XPAR_AXIREGS_0_BASEADDR + 0); // 8 transfers per row, a total of 80 for the prototype with 10 mers
+    status     = Xil_In32(XPAR_AXIREGS_0_BASEADDR + 4);
 
-    xil_printf("counts: %d\r\n", counts);
+    xil_printf("hw_matches: %d\r\n", hw_matches);
     xil_printf("status: %d\r\n", status);
+    printf("sw_time: %lf ms, hw_time_kickoff: %lf ms, hw_time_execution: %lf ms, hw_time_tail: %lf ms", sw_time*1000, hw_time_kickoff*1000, hw_time_execution*1000, hw_time_tail*1000);
+
+
+    // checking if sw and hw are equals
+    if(hw_matches == sw_matches){
+        xil_printf("PASS\r\n");
+    }
+    else{
+        xil_printf("FAIL SW=%lu HW=%lu\r\n", (unsigned long)sw_matches, (unsigned long)hw_matches);
+    }
 
 	XAxiDma_Reset(&AxiDma0);
     XAxiDma_Reset(&AxiDma1);
+
+    // histogram computation, we just print different than 0 entries
+    compute_histogram();
+    xil_printf("Histogram of consecutive matches\r\n");    
+    for(u32 i =  0; i <= NUM_KMERS_2; i++){
+        if(histogram[i] && i != 0){
+            xil_printf("%d -> %d\r\n", (unsigned long)i, (unsigned long)histogram[i]);
+        }
+    }
 
     cleanup_platform();
     return 0;
